@@ -1,25 +1,9 @@
 <template>
-  <cv-progress
-  :initial-step="initialStep"
-  :steps="steps"
-  :vertical="vertical" @step-clicked="actionStepClicked"></cv-progress>
+  <cv-button>teste</cv-button>
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
-  data() {
-    return {
-      "initialStep": 2,
-      "steps": [
-        "Step 1",
-        "Step 2 overflows and shows a tip",
-        "Step 3",
-        "Step 4",
-        "Step 5"
-      ],
-      "vertical": false
-    }
-  }
 }
 </script>
