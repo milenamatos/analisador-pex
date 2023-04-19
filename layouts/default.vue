@@ -1,7 +1,10 @@
 <template>
-  <div class="container bx--content">
+  <div>
     <HeaderNav />
-    <Nuxt />
+    
+    <div class="container bx--content">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
@@ -41,7 +44,6 @@ html {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
 }
 </style>
