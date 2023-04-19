@@ -1,6 +1,6 @@
 <template>
   <cv-header aria-label="Header" class="header-menu">   
-    <cv-header-name>
+    <cv-header-name href="/">
       AVEX
     </cv-header-name>
     
@@ -27,13 +27,13 @@ export default {
 <style lang="scss">
 @import "../styles/carbon";
 .header-menu {
-  background-color: $carbon--blue-40 !important;
+  background-color: $link-02 !important;
   
   a {
     color: white !important;
 
     &:hover {
-      background-color: $carbon--blue-50 !important;
+      background-color: $hover-primary !important;
     }
   }
 }
