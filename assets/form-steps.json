@@ -1,0 +1,19 @@
+{
+  "steps": [
+    "Informações básicas",
+    "Selecionar tópicos",
+    "Selecionar indicadores",
+    "Revisar dados"
+  ],
+  "0": [{
+    "name": "cv-text-input", 
+    "label": "Nome do projeto",
+    "placeholder": "Projeto de exemplo",
+    "helperText": "Insira um nome que ajude a identificar o seu projeto"
+  }, {
+    "name": "cv-text-area", 
+    "label": "Descrição do projeto",
+    "placeholder": "Este projeto tem como foco cumprir os objetivos de desenvolvimento sustentável...",
+    "helperText": "Insira uma breve descrição sobre o seu projeto"
+  }]
+}
