@@ -1,11 +1,12 @@
 {
-  "steps": [
+  "stepNames": [
     "Informações básicas",
     "Selecionar tópicos",
     "Selecionar indicadores",
     "Revisar dados"
   ],
-  "0": [{
+  "steps": [
+  [{
     "name": "cv-text-input", 
     "label": "Nome do projeto",
     "placeholder": "Projeto de exemplo",
@@ -15,5 +16,70 @@
     "label": "Descrição do projeto",
     "placeholder": "Este projeto tem como foco cumprir os objetivos de desenvolvimento sustentável...",
     "helperText": "Insira uma breve descrição sobre o seu projeto"
+  }],
+  [{
+    "name": "cv-multi-select", 
+    "title": "Socioculturais",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "label": "Selecione os tópicos",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário"
+  }, {
+    "name": "cv-multi-select", 
+    "title": "Meio ambiente",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "label": "Selecione os tópicos",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário"
+  },{
+    "name": "cv-multi-select", 
+    "title": "Economia",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "label": "Selecione os tópicos",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário"
+  }],
+  [{
+    "name": "cv-multi-select", 
+    "title": "Aluno, Sociedade e Financiadores Públicos",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "style": {"color": "green"},
+    "label": "Selecione os indicadores",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+  }, {
+    "name": "cv-multi-select", 
+    "title": "Processos Internos",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "style": {"color": "blue"},
+    "label": "Selecione os indicadores.",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+  },{
+    "name": "cv-multi-select", 
+    "title": "Aprendizagem e Crescimento",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "style": {"color": "orange"},
+    "label": "Selecione os indicadores",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+  },{
+    "name": "cv-multi-select", 
+    "title": "Recursos Financeiros e Infraestrutura",
+    "options": [],
+    "filterable": true,
+    "autoFilter": true,
+    "style": {"color": "red"},
+    "label": "Selecione os indicadores",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+  }],
+  [{
+    "name": "form-review"
   }]
-}
+]}
