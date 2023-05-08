@@ -7,11 +7,13 @@
   ],
   "steps": [
   [{
+    "id": "name",
     "name": "cv-text-input", 
     "label": "Nome do projeto",
     "placeholder": "Projeto de exemplo",
     "helperText": "Insira um nome que ajude a identificar o seu projeto"
   }, {
+    "id": "description",
     "name": "cv-text-area", 
     "label": "Descrição do projeto",
     "placeholder": "Este projeto tem como foco cumprir os objetivos de desenvolvimento sustentável...",

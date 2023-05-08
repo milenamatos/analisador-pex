@@ -8,24 +8,36 @@
     <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="steps" />
 
     <div class="form">
-      <component :is="item.name" v-for="(item, index) in currentStep" v-bind="item" :key="index" />
+      <component 
+        v-for="(item, index) in currentStep" 
+        :is="item.name" 
+        :key="index"
+        v-bind="item" 
+        v-model="formData[item.id]"
+      />
 
       <div :class='["form-navigation", {
           "form-navigation-first-step": currentStepNumber == 0
         }]'>
-        <cv-button v-if="currentStepNumber > 0" kind="tertiary" @click="currentStepNumber--">
+        <cv-button 
+          v-if="currentStepNumber > 0" 
+          :disabled="isLoading"
+          kind="tertiary" 
+          @click="currentStepNumber--"
+        >
           Voltar
         </cv-button>
-        <cv-button :icon="nextButtonIcon" @click="currentStepNumber++">
+        <cv-button :icon="nextButtonIcon" :disabled="isLoading" @click="nextButton">
           {{ nextButtonLabel }}
         </cv-button>
       </div>
     </div>
+
+    <cv-loading :active="isLoading" overlay></cv-loading>
   </div>
 </template>
 
 <script>
-import icon from "~/assets/icons/chevron-right.svg"
 import formSteps from '~/assets/form-steps.json'
 import FormReview from "~/components/form-review"
 
@@ -33,7 +45,6 @@ export default {
   name: 'AvaliarProjetoPage',
   components: {
     "form-review": FormReview,
-    icon,
   },
   data() {
     return {
@@ -41,10 +52,9 @@ export default {
       playIcon: require('~/assets/icons/play.svg'),
       currentStepNumber: 0,
       steps: formSteps.stepNames,
+      isLoading: false,
+      formData: {}
     }
-  },
-  created() {
-    console.log(icon)
   },
   computed: {
     currentStep() {
@@ -62,6 +72,25 @@ export default {
       return this.isLastStep
         ? "Realizar Avaliação"
         : "Próximo"
+    }
+  },
+  methods: {
+    validateForm() {
+      return this.currentStep.every((item) => !!this.formData[item.id])
+    },
+    nextButton() {
+      if (this.isLastStep) {
+        // this.startEvaluation()
+        this.isLoading = true
+        setTimeout(() => {
+          this.isLoading = false
+        }, 3000)
+      } else {
+        if (this.validateForm()) {
+          this.currentStepNumber++
+        }
+        console.log(this.formData)
+      }
     }
   }
 }
