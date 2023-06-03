@@ -40,6 +40,7 @@
 <script>
 import formSteps from '~/assets/form-steps.json'
 import FormReview from "~/components/form-review"
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'AvaliarProjetoPage',
@@ -50,6 +51,7 @@ export default {
     return {
       chevronRightIcon: require('~/assets/icons/chevron-right.svg'),
       playIcon: require('~/assets/icons/play.svg'),
+      currentStep: {},
       currentStepNumber: 0,
       steps: formSteps.stepNames,
       isLoading: false,
@@ -57,9 +59,7 @@ export default {
     }
   },
   computed: {
-    currentStep() {
-      return formSteps.steps[this.currentStepNumber]
-    },
+    ...mapGetters('keyword', ['keywordsByCategory']),
     isLastStep() {
       return this.currentStepNumber === formSteps.steps.length - 1
     },
@@ -74,7 +74,34 @@ export default {
         : "Próximo"
     }
   },
+  watch: {
+    currentStepNumber: {
+      immediate: true,
+      async handler(newValue) {
+        const newSteps = formSteps.steps[newValue]
+        
+        switch(newValue) {
+          case 1:
+            await this.getKeywords();
+            this.currentStep = newSteps.map(field => ({
+              ...field, options: this.getKeywordsByCategory(field.dataLabel)
+            }))
+            break;
+          default:
+            this.currentStep = newSteps
+        }
+      }
+    }
+  },
   methods: {
+    ...mapActions('keyword', ['getKeywords']),
+    getKeywordsByCategory(category) {
+      this.keywordsByCategory(category).map((keyword) => ({
+        name: keyword.name,
+        label: keyword.name,
+        value: keyword.id.toString()
+      }))
+    },
     validateForm() {
       return this.currentStep.every((item) => !!this.formData[item.id])
     },

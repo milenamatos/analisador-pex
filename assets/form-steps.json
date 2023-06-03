@@ -24,25 +24,25 @@
     "title": "Socioculturais",
     "options": [],
     "filterable": true,
-    "autoFilter": true,
     "label": "Selecione os tópicos",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário"
+    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
+    "dataLabel": "sociocultural"
   }, {
     "name": "cv-multi-select", 
     "title": "Meio ambiente",
     "options": [],
     "filterable": true,
-    "autoFilter": true,
     "label": "Selecione os tópicos",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário"
+    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
+    "dataLabel": "meio-ambiente"
   },{
     "name": "cv-multi-select", 
     "title": "Economia",
     "options": [],
     "filterable": true,
-    "autoFilter": true,
     "label": "Selecione os tópicos",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário"
+    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
+    "dataLabel": "economico"
   }],
   [{
     "name": "cv-multi-select", 
