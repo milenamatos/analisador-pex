@@ -11,9 +11,17 @@
       <component 
         v-for="(item, index) in currentStep" 
         :is="item.name" 
-        :key="index"
+        :key="index" 
+        :value="formData[item.dataLabel]"
         v-bind="item" 
-        v-model="formData[item.id]"
+        @input="($event) => {
+          if (item.name == 'cv-text-input')
+            setFormData({ ...formData, [item.dataLabel]: $event })
+        }" 
+        @change="($event) => {
+        if (item.name != 'cv-text-input')
+          setFormData({ ...formData, [item.dataLabel]: $event })
+        }" 
       />
 
       <div :class='["form-navigation", {
@@ -23,7 +31,7 @@
           v-if="currentStepNumber > 0" 
           :disabled="isLoading"
           kind="tertiary" 
-          @click="currentStepNumber--"
+          @click="previousButton"
         >
           Voltar
         </cv-button>
@@ -55,11 +63,12 @@ export default {
       currentStepNumber: 0,
       steps: formSteps.stepNames,
       isLoading: false,
-      formData: {}
     }
   },
   computed: {
     ...mapGetters('keyword', ['keywordsByCategory']),
+    ...mapGetters('indicator', ['indicatorsByCategory']),
+    ...mapGetters('formData', ['formData']),
     isLastStep() {
       return this.currentStepNumber === formSteps.steps.length - 1
     },
@@ -74,17 +83,31 @@ export default {
         : "Próximo"
     }
   },
+  async beforeMount() {
+    await this.getKeywords();
+    await this.getIndicators();  
+  },
   watch: {
     currentStepNumber: {
       immediate: true,
       async handler(newValue) {
         const newSteps = formSteps.steps[newValue]
-        
-        switch(newValue) {
+
+        switch (newValue) {
           case 1:
-            await this.getKeywords();
             this.currentStep = newSteps.map(field => ({
-              ...field, options: this.getKeywordsByCategory(field.dataLabel)
+              ...field,
+              options: this.mapOptions(
+                this.keywordsByCategory(field.dataLabel)
+              )
+            }))
+            break;
+          case 2:
+            this.currentStep = newSteps.map(field => ({
+              ...field,
+              options: this.mapOptions(
+                this.indicatorsByCategory(field.dataLabel)
+              )
             }))
             break;
           default:
@@ -95,15 +118,24 @@ export default {
   },
   methods: {
     ...mapActions('keyword', ['getKeywords']),
-    getKeywordsByCategory(category) {
-      this.keywordsByCategory(category).map((keyword) => ({
-        name: keyword.name,
-        label: keyword.name,
-        value: keyword.id.toString()
+    ...mapActions('indicator', ['getIndicators']),
+    ...mapActions('formData', ['setFormData']),
+    mapOptions(optionsList) {
+      return optionsList.map((item) => ({
+        name: item.name,
+        label: item.name,
+        value: item.id.toString()
       }))
     },
     validateForm() {
-      return this.currentStep.every((item) => !!this.formData[item.id])
+      return this.currentStepNumber == 0
+        ? this.currentStep.every((item) => !!this.formData[item.dataLabel] || !!item.optional)
+        : this.currentStep.some((item) => !!this.formData[item.dataLabel])
+    },
+    previousButton() {
+      setTimeout(() => {
+        this.currentStepNumber--
+      }, 100)
     },
     nextButton() {
       if (this.isLastStep) {
