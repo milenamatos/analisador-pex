@@ -7,39 +7,46 @@
   ],
   "steps": [
   [{
-    "id": "name",
+    "dataLabel": "name",
     "name": "cv-text-input", 
     "label": "Nome do projeto",
     "placeholder": "Projeto de exemplo",
     "helperText": "Insira um nome que ajude a identificar o seu projeto"
   }, {
-    "id": "description",
+    "dataLabel": "description",
     "name": "cv-text-area", 
     "label": "Descrição do projeto",
     "placeholder": "Este projeto tem como foco cumprir os objetivos de desenvolvimento sustentável...",
-    "helperText": "Insira uma breve descrição sobre o seu projeto"
+    "helperText": "Insira uma breve descrição sobre o seu projeto",
+    "optional": true
   }],
   [{
     "name": "cv-multi-select", 
     "title": "Socioculturais",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
+    "autoFilter": true,
+    "autoHighlight": true,
     "label": "Selecione os tópicos",
     "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
     "dataLabel": "sociocultural"
   }, {
     "name": "cv-multi-select", 
     "title": "Meio ambiente",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
+    "autoFilter": true,
+    "autoHighlight": true,
     "label": "Selecione os tópicos",
     "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
     "dataLabel": "meio-ambiente"
   },{
     "name": "cv-multi-select", 
     "title": "Economia",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
+    "autoFilter": true,
+    "autoHighlight": true,
     "label": "Selecione os tópicos",
     "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
     "dataLabel": "economico"
@@ -47,39 +54,47 @@
   [{
     "name": "cv-multi-select", 
     "title": "Aluno, Sociedade e Financiadores Públicos",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
     "autoFilter": true,
+    "autoHighlight": true,
     "style": {"color": "green"},
     "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+    "dataLabel": "cliente"
   }, {
     "name": "cv-multi-select", 
     "title": "Processos Internos",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
     "autoFilter": true,
+    "autoHighlight": true,
     "style": {"color": "blue"},
-    "label": "Selecione os indicadores.",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+    "label": "Selecione os indicadores",
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+    "dataLabel": "processos-internos"
   },{
     "name": "cv-multi-select", 
     "title": "Aprendizagem e Crescimento",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
     "autoFilter": true,
+    "autoHighlight": true,
     "style": {"color": "orange"},
     "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+    "dataLabel": "aprendizagem"
   },{
     "name": "cv-multi-select", 
     "title": "Recursos Financeiros e Infraestrutura",
-    "options": [],
+    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
     "filterable": true,
     "autoFilter": true,
+    "autoHighlight": true,
     "style": {"color": "red"},
     "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário"
+    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+    "dataLabel": "financeira"
   }],
   [{
     "name": "form-review"
