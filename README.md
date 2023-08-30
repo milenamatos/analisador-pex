@@ -10,7 +10,7 @@ Analisador PEX é um projeto institucional desenvolvido como parte de Trabalho d
 - [Carbon Design System](https://carbondesignsystem.com/)
 - [Node.js API](https://nodejs.org/en)
 
-Repositório da API: [avex-api](https://github.com/milenamatos/avex_api)
+Repositório da API: [analisador-pex-api](https://github.com/milenamatos/analisador-pex-api)
 
 ## Setup
 
