@@ -1,8 +1,8 @@
-# AVEX
+# Analisador PEX
 
-**AVEX - Avaliador de Projetos de Extensão Universitária**
+**Analisador PEX - Analisador de Projetos de Extensão Universitária**
 
-AVEX é um projeto institucional desenvolvido como parte de Trabalho de Conclusão de Curso (TCC), na UNIFESP.
+Analisador PEX é um projeto institucional desenvolvido como parte de Trabalho de Conclusão de Curso (TCC), na UNIFESP.
 
 ## Tecnologias
 
@@ -10,7 +10,7 @@ AVEX é um projeto institucional desenvolvido como parte de Trabalho de Conclus�
 - [Carbon Design System](https://carbondesignsystem.com/)
 - [Node.js API](https://nodejs.org/en)
 
-API repo is in another repository: [avex-api](https://github.com/milenamatos/avex_api)
+Repositório da API: [avex-api](https://github.com/milenamatos/avex_api)
 
 ## Setup
 
