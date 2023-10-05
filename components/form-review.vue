@@ -1,57 +1,82 @@
 <template>
   <div class="form-review">
     <h5>Nome:</h5>
-    <span>EMTU</span>
+    <span>{{ formData.name }}</span>
 
     <h5>Descrição:</h5>
-    <span>EMTU</span>
+    <span>{{ formData.description }}</span>
 
     <h5>Tópicos:</h5>
     <div>
       <cv-tag 
-        v-for="(item, index) in topics" 
+        v-for="(item, index) in formatSelectedOptions('keywords')" 
         :key="index"
-        :label="item"
+        :label="keywordList[item.id]"
         filter
-        @remove="topics.splice(index, 1)">
+        @remove="removeItem(item)">
       </cv-tag>
     </div>
 
     <h5>Indicadores:</h5>
     <div>
       <cv-tag 
-        v-for="(item, index) in indicators" 
+        v-for="(item, index) in formatSelectedOptions('indicators')" 
         :key="index"
-        :label="item.label"
-        :kind="item.kind"
-        :class="item.className"
+        :label="indicatorList[item.id]"
+        :kind="item.style.color"
+        :class="item.style.class"
         filter
-        @remove="indicators.splice(index, 1)">
+        @remove="removeItem(item)">
       </cv-tag>
     </div>
   </div>
 </template>
 
 <script>
+import formSteps from '~/assets/form-steps.json'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'FormReview',
   data() {
     return {
-      topics: ["teste1", "teste2", "banana", "uva", "pera"],
-      indicators: [{
-        label: "teste1",
-        kind: "blue"
-      }, {
-        label: "teste2",
-        kind: "green"
-      },{
-        label: "teste3",
-        kind: "red"
-      },{
-        label: "teste4",
-        className: "tag--orange"
-      },]
+      colors: ["blue", "green", "red"],
+      stepNumber: {
+        'keywords': 1,
+        'indicators': 2
+      }
     };
+  },
+  computed: {
+    ...mapGetters('keyword', ['keywordList']),
+    ...mapGetters('indicator', ['indicatorList']),
+    ...mapGetters('formData', ['formData'])
+  },
+  methods: {
+    ...mapActions('formData', ['setFormData']),
+    formatSelectedOptions(type) {
+      const stepNumber = this.stepNumber[type]
+      const fieldsConfig = formSteps.steps[stepNumber].map(field => {
+        return {
+          label: field.dataLabel, 
+          style: field.style 
+        }
+      })
+
+      const selected = []
+      fieldsConfig.forEach(({label, style}) => {
+        this.formData[label]?.forEach(id => {
+          selected.push({id, label, style})
+        })
+      })
+      console.log(selected)
+      return selected
+    },
+    removeItem(item) {
+      const {id, label} = item
+      const updatedList = this.formData[label].filter(value => value != id)
+      this.setFormData({ ...this.formData, [label]: updatedList })
+    }
   }
 };
 </script>
