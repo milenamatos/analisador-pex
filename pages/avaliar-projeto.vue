@@ -1,28 +1,40 @@
 <template>
   <div class="avaliar-projeto">
-    <h3>Avalie seu projeto de acordo com os indicadores FORPROEX e Objetivos de Desenvolvimento Sustentável!</h3>
+    <h3>Analise seu projeto de acordo com os indicadores FORPROEX e Objetivos de Desenvolvimento Sustentável!</h3>
 
     <p>Preencha as informações no formulário abaixo para realizar sua avaliação. Seus dados não serão salvos nem
       compartilhados.</p>
 
-    <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="steps" />
+    <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="stepNames" />
 
-    <div class="form">
-      <component 
-        v-for="(item, index) in currentStep" 
-        :is="item.name" 
-        :key="index" 
-        :value="formData[item.dataLabel]"
-        v-bind="item" 
-        @input="($event) => {
-          if (item.name == 'cv-text-input')
-            setFormData({ ...formData, [item.dataLabel]: $event })
-        }" 
-        @change="($event) => {
-        if (item.name != 'cv-text-input')
-          setFormData({ ...formData, [item.dataLabel]: $event })
-        }" 
-      />
+    <div>
+      <div 
+        v-for="(step, stepIndex) in filledSteps" 
+        v-show="stepIndex === currentStepNumber"
+        :key="stepIndex"
+        class="form"
+      >  
+        <component 
+          v-for="(field, index) in step" 
+          :is="field.name" 
+          :key="index" 
+          :value="formData[field.dataLabel]"
+          v-bind="field" 
+          @input="($event) => {
+            if (field.name == 'cv-text-input') {
+              setFormData({ ...formData, [field.dataLabel]: $event })
+            }
+          }" 
+          @change="($event) => {
+            if (field.name == 'cv-text-area') {
+              setFormData({ ...formData, [field.dataLabel]: $event.target.value })
+            }
+            else if (field.name == 'cv-multi-select') {
+              setFormData({ ...formData, [field.dataLabel]: $event })
+            }
+          }" 
+        />
+      </div>
 
       <div :class='["form-navigation", {
           "form-navigation-first-step": currentStepNumber == 0
@@ -59,9 +71,9 @@ export default {
     return {
       chevronRightIcon: require('~/assets/icons/chevron-right.svg'),
       playIcon: require('~/assets/icons/play.svg'),
-      currentStep: {},
       currentStepNumber: 0,
-      steps: formSteps.stepNames,
+      filledSteps: [],
+      stepNames: formSteps.stepNames,
       isLoading: false,
     }
   },
@@ -69,6 +81,9 @@ export default {
     ...mapGetters('keyword', ['keywordsByCategory']),
     ...mapGetters('indicator', ['indicatorsByCategory']),
     ...mapGetters('formData', ['formData']),
+    currentStep() {
+      return this.filledSteps[this.currentStepNumber]
+    },
     isLastStep() {
       return this.currentStepNumber === formSteps.steps.length - 1
     },
@@ -86,35 +101,17 @@ export default {
   async beforeMount() {
     await this.getKeywords();
     await this.getIndicators();  
-  },
-  watch: {
-    currentStepNumber: {
-      immediate: true,
-      async handler(newValue) {
-        const newSteps = formSteps.steps[newValue]
 
-        switch (newValue) {
-          case 1:
-            this.currentStep = newSteps.map(field => ({
-              ...field,
-              options: this.mapOptions(
-                this.keywordsByCategory(field.dataLabel)
-              )
-            }))
-            break;
-          case 2:
-            this.currentStep = newSteps.map(field => ({
-              ...field,
-              options: this.mapOptions(
-                this.indicatorsByCategory(field.dataLabel)
-              )
-            }))
-            break;
-          default:
-            this.currentStep = newSteps
-        }
-      }
-    }
+    this.filledSteps = formSteps.steps.map(step => {
+      return step.map(field => ({
+        ...field,
+        options: field.fillerFunction ? 
+          this.mapOptions(
+            this[field.fillerFunction](field.dataLabel)
+          ) : []
+      }))
+    })
+
   },
   methods: {
     ...mapActions('keyword', ['getKeywords']),
