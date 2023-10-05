@@ -1,7 +1,7 @@
 <template>
   <cv-header aria-label="Header" class="header-menu">   
     <cv-header-name href="/">
-      AVEX
+      Analisador PEX
     </cv-header-name>
     
     <cv-header-nav aria-label="Navegação menu">

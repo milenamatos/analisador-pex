@@ -1,4 +1,4 @@
-import avexApi from 'assets/services/avex-api'
+import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
   keywords: []
@@ -17,7 +17,7 @@ export const mutations = {
 
 export const actions = {
   async getKeywords ({ commit }) {
-    const { data } = await avexApi.get("/keywords")
+    const { data } = await apexApi.get("/keywords")
     commit('setKeywords', data)
   }
 }

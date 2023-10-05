@@ -1,4 +1,4 @@
-import avexApi from 'assets/services/avex-api'
+import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
   indicators: []
@@ -19,7 +19,7 @@ export const mutations = {
 
 export const actions = {
   async getIndicators ({ commit }) {
-    const { data } = await avexApi.get("/indicators")
+    const { data } = await apexApi.get("/indicators")
     commit('setIndicators', data)
   }
 }
