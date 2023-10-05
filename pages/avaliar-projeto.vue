@@ -78,8 +78,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('keyword', ['keywordsByCategory']),
-    ...mapGetters('indicator', ['indicatorsByCategory']),
+    ...mapGetters('keyword', ['keywords']),
+    ...mapGetters('indicator', ['indicators']),
     ...mapGetters('formData', ['formData']),
     currentStep() {
       return this.filledSteps[this.currentStepNumber]
@@ -105,9 +105,9 @@ export default {
     this.filledSteps = formSteps.steps.map(step => {
       return step.map(field => ({
         ...field,
-        options: field.fillerFunction ? 
+        options: field.model ? 
           this.mapOptions(
-            this[field.fillerFunction](field.dataLabel)
+            this[field.model](field.dataLabel)
           ) : []
       }))
     })

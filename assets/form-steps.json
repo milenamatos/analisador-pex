@@ -23,41 +23,41 @@
   [{
     "name": "cv-multi-select", 
     "title": "Socioculturais",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
     "label": "Selecione os tópicos",
     "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
     "dataLabel": "sociocultural",
-    "fillerFunction": "keywordsByCategory"
+    "model": "keywords"
   }, {
     "name": "cv-multi-select", 
     "title": "Meio ambiente",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
     "label": "Selecione os tópicos",
     "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
     "dataLabel": "meio-ambiente",
-    "fillerFunction": "keywordsByCategory"
+    "model": "keywords"
   },{
     "name": "cv-multi-select", 
     "title": "Economia",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
     "label": "Selecione os tópicos",
     "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
     "dataLabel": "economico",
-    "fillerFunction": "keywordsByCategory"
+    "model": "keywords"
   }],
   [{
     "name": "cv-multi-select", 
     "title": "Aluno, Sociedade e Financiadores Públicos",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
@@ -65,11 +65,11 @@
     "label": "Selecione os indicadores",
     "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
     "dataLabel": "cliente",
-    "fillerFunction": "indicatorsByCategory"
+    "model": "indicators"
   }, {
     "name": "cv-multi-select", 
     "title": "Processos Internos",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
@@ -77,23 +77,23 @@
     "label": "Selecione os indicadores",
     "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
     "dataLabel": "processos-internos",
-    "fillerFunction": "indicatorsByCategory"
+    "model": "indicators"
   },{
     "name": "cv-multi-select", 
     "title": "Aprendizagem e Crescimento",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
-    "style": {"color": "orange"},
+    "style": {"color": "orange", "class": "tag--orange"},
     "label": "Selecione os indicadores",
     "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
     "dataLabel": "aprendizagem",
-    "fillerFunction": "indicatorsByCategory"
+    "model": "indicators"
   },{
     "name": "cv-multi-select", 
     "title": "Recursos Financeiros e Infraestrutura",
-    "options": [{"name": "teste", "id": 1}, {"name": "teste2", "id": 2}],
+    "options": [],
     "filterable": true,
     "autoFilter": true,
     "autoHighlight": true,
@@ -101,7 +101,7 @@
     "label": "Selecione os indicadores",
     "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
     "dataLabel": "financeira",
-    "fillerFunction": "indicatorsByCategory"
+    "model": "indicators"
   }],
   [{
     "name": "form-review"

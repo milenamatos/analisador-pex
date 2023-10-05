@@ -5,8 +5,14 @@ export const state = () => ({
 })
 
 export const getters = {
-  keywordsByCategory: (state) => (category) => 
-    state.keywords.filter((keyword) => keyword.Goal.Category.label === category)
+  keywords: (state) => (category) => 
+    state.keywords.filter((keyword) => keyword.Goal.Category.label === category),
+  
+  keywordList: (state) => 
+    state.keywords.reduce((result, keyword) => {
+      result[keyword.id] = keyword.name;
+      return result;
+    }, {})
 }
 
 export const mutations = {

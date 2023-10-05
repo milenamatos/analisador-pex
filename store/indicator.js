@@ -5,10 +5,16 @@ export const state = () => ({
 })
 
 export const getters = {
-  indicatorsByCategory: (state) => (category) => 
+  indicators: (state) => (category) => 
     state.indicators
       .filter((indicator) => indicator.Category.label === category)
-      .map(indicator => ({ ...indicator, name: `${indicator.name} - ${indicator.description}` }))
+      .map(indicator => ({ ...indicator, name: `${indicator.name} - ${indicator.description}` })),
+  
+  indicatorList: (state) => 
+    state.indicators.reduce((result, indicator) => {
+      result[indicator.id] = indicator.name;
+      return result;
+    }, {})
 }
 
 export const mutations = {
