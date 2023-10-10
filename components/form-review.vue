@@ -9,9 +9,9 @@
     <h5>Tópicos:</h5>
     <div>
       <cv-tag 
-        v-for="(item, index) in formatSelectedOptions('keywords')" 
+        v-for="(item, index) in selectedData.keywords" 
         :key="index"
-        :label="keywordList[item.id]"
+        :label="keywordList[item.id].name"
         filter
         @remove="removeItem(item)">
       </cv-tag>
@@ -20,9 +20,9 @@
     <h5>Indicadores:</h5>
     <div>
       <cv-tag 
-        v-for="(item, index) in formatSelectedOptions('indicators')" 
+        v-for="(item, index) in selectedData.indicators" 
         :key="index"
-        :label="indicatorList[item.id]"
+        :label="indicatorList[item.id].name"
         :kind="item.style.color"
         :class="item.style.class"
         filter
@@ -50,10 +50,19 @@ export default {
   computed: {
     ...mapGetters('keyword', ['keywordList']),
     ...mapGetters('indicator', ['indicatorList']),
-    ...mapGetters('formData', ['formData'])
+    ...mapGetters('formData', ['formData', 'formattedData']),
+    selectedData() {
+      const formatted = {}
+      Object.keys(this.stepNumber).forEach(type => {
+        formatted[type] = this.formatSelectedOptions(type)
+      })
+      this.setFormattedData(formatted)
+
+      return formatted
+    }
   },
   methods: {
-    ...mapActions('formData', ['setFormData']),
+    ...mapActions('formData', ['setFormData', 'setFormattedData']),
     formatSelectedOptions(type) {
       const stepNumber = this.stepNumber[type]
       const fieldsConfig = formSteps.steps[stepNumber].map(field => {
@@ -69,7 +78,6 @@ export default {
           selected.push({id, label, style})
         })
       })
-      console.log(selected)
       return selected
     },
     removeItem(item) {

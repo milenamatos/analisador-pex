@@ -10,7 +10,7 @@ export const getters = {
   
   keywordList: (state) => 
     state.keywords.reduce((result, keyword) => {
-      result[keyword.id] = keyword.name;
+      result[keyword.id] = keyword;
       return result;
     }, {})
 }

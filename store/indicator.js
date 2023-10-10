@@ -12,7 +12,7 @@ export const getters = {
   
   indicatorList: (state) => 
     state.indicators.reduce((result, indicator) => {
-      result[indicator.id] = indicator.name;
+      result[indicator.id] = indicator;
       return result;
     }, {})
 }
