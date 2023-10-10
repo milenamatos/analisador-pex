@@ -116,7 +116,7 @@ export default {
   methods: {
     ...mapActions('keyword', ['getKeywords']),
     ...mapActions('indicator', ['getIndicators']),
-    ...mapActions('formData', ['setFormData']),
+    ...mapActions('formData', ['setFormData', 'fetchAnalysis']),
     mapOptions(optionsList) {
       return optionsList.map((item) => ({
         name: item.name,
@@ -136,7 +136,7 @@ export default {
     },
     nextButton() {
       if (this.isLastStep) {
-        // this.startEvaluation()
+        this.fetchAnalysis()
         this.isLoading = true
         setTimeout(() => {
           this.isLoading = false
