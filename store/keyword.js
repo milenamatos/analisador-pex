@@ -1,7 +1,8 @@
 import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
-  keywords: []
+  keywords: [],
+  goals: []
 })
 
 export const getters = {
@@ -18,12 +19,23 @@ export const getters = {
 export const mutations = {
   setKeywords (state, value) {
     state.keywords = value
+  },
+
+  setGoals (state, value) {
+    state.goals = value
   }
 }
 
 export const actions = {
   async getKeywords ({ commit }) {
     const { data } = await apexApi.get("/keywords")
+
+    const goals = data.reduce((result, keyword) => {
+      result[keyword.Goal.id] = keyword.Goal;
+      return result;
+    }, {})
+
     commit('setKeywords', data)
+    commit('setGoals', goals)
   }
 }
