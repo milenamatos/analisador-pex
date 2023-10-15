@@ -1,6 +1,9 @@
+import apexApi from 'assets/services/apex-api'
+
 export const state = () => ({
   formData: {},
-  formattedData: {}
+  formattedData: {},
+  relatedGoals: []
 })
 
 export const getters = {
@@ -15,6 +18,10 @@ export const mutations = {
 
   setFormattedData (state, value) {
     state.formattedData = value
+  },
+
+  setRelatedGoals (state, value) {
+    state.relatedGoals = value
   }
 }
 
@@ -38,6 +45,7 @@ export const actions = {
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
     const body = { goals, indicators }
-    console.log(body)
+    const { data } = await apexApi.post("/goals", body)
+    commit('setRelatedGoals', data)
   }
 }
