@@ -134,18 +134,16 @@ export default {
         this.currentStepNumber--
       }, 100)
     },
-    nextButton() {
+    async nextButton() {
       if (this.isLastStep) {
-        this.fetchAnalysis()
         this.isLoading = true
-        setTimeout(() => {
-          this.isLoading = false
-        }, 3000)
+        await this.fetchAnalysis()
+        
+        this.$router.push('/resultado')
       } else {
         if (this.validateForm()) {
           this.currentStepNumber++
         }
-        console.log(this.formData)
       }
     }
   }
