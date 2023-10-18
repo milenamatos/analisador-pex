@@ -3,6 +3,7 @@ import apexApi from 'assets/services/apex-api'
 export const state = () => ({
   formData: {},
   formattedData: {},
+  requestedAnalysis: false,
   relatedGoals: []
 })
 
@@ -18,6 +19,10 @@ export const mutations = {
 
   setFormattedData (state, value) {
     state.formattedData = value
+  },
+
+  setRequestedAnalysis (state, value) {
+    state.requestedAnalysis = value
   },
 
   setRelatedGoals (state, value) {
@@ -46,6 +51,8 @@ export const actions = {
 
     const body = { goals, indicators }
     const { data } = await apexApi.post("/goals", body)
+
+    commit('setRequestedAnalysis', true)
     commit('setRelatedGoals', data)
   }
 }
