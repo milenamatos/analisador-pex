@@ -20,7 +20,7 @@
 
       <cv-row>
         <cv-column>
-          <IndicatorsDistribution />
+          <IndicatorsDistributionTable />
         </cv-column>
         <cv-column>
           <div>bbbbb</div>
@@ -31,15 +31,15 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
-import RelatedGoals from '~/components/related-goals'
-import IndicatorsDistribution from '~/components/indicators-distribution'
+import { mapState } from 'vuex'
+import RelatedGoals from '~/components/tables/related-goals'
+import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 
 export default {
   name: 'ResultadoPage',
   components: {
     RelatedGoals,
-    IndicatorsDistribution
+    IndicatorsDistributionTable
   },
   data() {
     return {
@@ -71,13 +71,6 @@ export default {
   display: grid;
   grid-gap: 70px;
   margin-top: 40px;
-}
-
-// .resultado-tabela {
-//   grid-column: span 2;
-// }
-
-.cv-grid {
   padding: 0;
 }
 </style>
