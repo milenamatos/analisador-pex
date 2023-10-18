@@ -23,7 +23,7 @@
           <IndicatorsDistributionTable />
         </cv-column>
         <cv-column>
-          <div>bbbbb</div>
+          <IndicatorsDistributionChart />
         </cv-column>
       </cv-row>
     </cv-grid>
@@ -34,12 +34,14 @@
 import { mapState } from 'vuex'
 import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
+import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
 
 export default {
   name: 'ResultadoPage',
   components: {
     RelatedGoals,
-    IndicatorsDistributionTable
+    IndicatorsDistributionTable,
+    IndicatorsDistributionChart
   },
   data() {
     return {
