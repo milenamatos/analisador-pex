@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h3>Resultado</h3>
-
     <div class="navigation">
-      <cv-button kind="tertiary" @click="">
+      <cv-button kind="tertiary" @click="$router.push('/avaliar-projeto')">
         Realizar outra análise
       </cv-button>
       <cv-button :icon="exportIcon" @click="">
         Exportar
       </cv-button>
     </div>
+
+    <h3>Relatório de análise</h3>
 
     <div class="resultado">
       <cv-grid fullWidth>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import RelatedGoals from '~/components/related-goals'
 
 export default {
@@ -47,7 +47,12 @@ export default {
       exportIcon: require('~/assets/icons/generate-pdf.svg'),
     }
   },
+  created() {
+    if (!this.requestedAnalysis) 
+      this.$router.push('/avaliar-projeto')
+  },
   computed: {
+    ...mapState('formData', ['requestedAnalysis'])
   },
   methods: {
   }
