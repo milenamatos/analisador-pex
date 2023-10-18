@@ -5,6 +5,10 @@
     "Selecionar indicadores",
     "Revisar dados"
   ],
+  "stepNumber": {
+    "keywords": 1,
+    "indicators": 2
+  },
   "steps": [
   [{
     "dataLabel": "name",

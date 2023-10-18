@@ -40,11 +40,7 @@ export default {
   name: 'FormReview',
   data() {
     return {
-      colors: ["blue", "green", "red"],
-      stepNumber: {
-        'keywords': 1,
-        'indicators': 2
-      }
+      colors: ["blue", "green", "red"]
     };
   },
   computed: {
@@ -53,7 +49,7 @@ export default {
     ...mapGetters('formData', ['formData', 'formattedData']),
     selectedData() {
       const formatted = {}
-      Object.keys(this.stepNumber).forEach(type => {
+      Object.keys(formSteps.stepNumber).forEach(type => {
         formatted[type] = this.formatSelectedOptions(type)
       })
       this.setFormattedData(formatted)
@@ -64,7 +60,7 @@ export default {
   methods: {
     ...mapActions('formData', ['setFormData', 'setFormattedData']),
     formatSelectedOptions(type) {
-      const stepNumber = this.stepNumber[type]
+      const stepNumber = formSteps.stepNumber[type]
       const fieldsConfig = formSteps.steps[stepNumber].map(field => {
         return {
           label: field.dataLabel, 
