@@ -2,40 +2,50 @@ import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
   formData: {},
-  formattedData: {},
+  formattedData: {
+    indicators: [],
+    goals: []
+  },
   requestedAnalysis: false,
   relatedGoals: []
 })
 
 export const getters = {
   formData: (state) => state.formData,
-  formattedData: (state) => state.formattedData 
+  formattedData: (state) => state.formattedData,
+  groupedIndicators: (state) => 
+    state.formattedData.indicators.reduce((result, indicator) => {
+      result[indicator.label] = result[indicator.label]
+        ? result[indicator.label]+1
+        : 1
+      return result;
+    }, {})
 }
 
 export const mutations = {
-  setFormData (state, value) {
+  setFormData(state, value) {
     state.formData = value
   },
 
-  setFormattedData (state, value) {
+  setFormattedData(state, value) {
     state.formattedData = value
   },
 
-  setRequestedAnalysis (state, value) {
+  setRequestedAnalysis(state, value) {
     state.requestedAnalysis = value
   },
 
-  setRelatedGoals (state, value) {
+  setRelatedGoals(state, value) {
     state.relatedGoals = value
   }
 }
 
 export const actions = {
-  setFormData ({ commit }, data) {
+  setFormData({ commit }, data) {
     commit('setFormData', data)
   },
 
-  setFormattedData ({ commit }, data) {
+  setFormattedData({ commit }, data) {
     commit('setFormattedData', data)
   },
 
@@ -46,7 +56,7 @@ export const actions = {
     const goals = [...new Set(
       state.formattedData.keywords.map(item => keywordList[item.id].Goal.id)
     )]
-    
+
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
     const body = { goals, indicators }
