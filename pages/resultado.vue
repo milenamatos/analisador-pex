@@ -11,36 +11,35 @@
 
     <h3>Relatório de análise</h3>
 
-    <div class="resultado">
-      <cv-grid fullWidth>
-        <cv-row>
-          <cv-column>
-            <RelatedGoals />
-          </cv-column>
-        </cv-row>
+    <cv-grid fullWidth class="resultado">
+      <cv-row>
+        <cv-column>
+          <RelatedGoals />
+        </cv-column>
+      </cv-row>
 
-        <cv-row>
-          <cv-column>
-            <div>aaaa</div>
-          </cv-column>
-          <cv-column>
-            <div>bbbbb</div>
-          </cv-column>
-        </cv-row>
-
-      </cv-grid>
-    </div>
+      <cv-row>
+        <cv-column>
+          <IndicatorsDistribution />
+        </cv-column>
+        <cv-column>
+          <div>bbbbb</div>
+        </cv-column>
+      </cv-row>
+    </cv-grid>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
 import RelatedGoals from '~/components/related-goals'
+import IndicatorsDistribution from '~/components/indicators-distribution'
 
 export default {
   name: 'ResultadoPage',
   components: {
-    RelatedGoals
+    RelatedGoals,
+    IndicatorsDistribution
   },
   data() {
     return {
@@ -52,7 +51,7 @@ export default {
       this.$router.push('/avaliar-projeto')
   },
   computed: {
-    ...mapState('formData', ['requestedAnalysis'])
+    ...mapState('formData', ['requestedAnalysis']),
   },
   methods: {
   }
@@ -69,10 +68,8 @@ export default {
 }
 
 .resultado {
-  // display: grid;
-  // grid-template-rows: 1fr 1fr;
-  // grid-template-columns: 1fr 1fr;
-  // grid-gap: 20px;
+  display: grid;
+  grid-gap: 70px;
   margin-top: 40px;
 }
 
