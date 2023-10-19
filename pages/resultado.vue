@@ -1,32 +1,52 @@
 <template>
-  <div>
+  <div class="result-container">
     <div class="navigation">
       <cv-button kind="tertiary" @click="$router.push('/avaliar-projeto')">
         Realizar outra análise
       </cv-button>
+
+      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção' @selected="onSelected">
+        <cv-content-switcher-button owner-id="relatorio" :selected="selectedIndex === 0">
+          Relatório
+        </cv-content-switcher-button>
+        <cv-content-switcher-button owner-id="tabelas" :selected="selectedIndex === 1">
+          Tabelas
+        </cv-content-switcher-button>
+      </cv-content-switcher>
+
+
       <cv-button :icon="exportIcon" @click="">
         Exportar
       </cv-button>
     </div>
 
-    <h3>Relatório de análise</h3>
+    <section style="margin: 10px 0;">
+      <cv-content-switcher-content owner-id="relatorio">
+        <h3>Relatório de análise</h3>
+        <cv-grid fullWidth class="resultado">
+          <cv-row>
+            <cv-column>
+              <RelatedGoals />
+            </cv-column>
+          </cv-row>
+          <cv-row>
+            <cv-column class="max-row-height">
+              <IndicatorsDistributionChart />
+            </cv-column>
+            <cv-column>
+              <IndicatorsDistributionTable />
+            </cv-column>
+          </cv-row>
+        </cv-grid>
+      </cv-content-switcher-content>
 
-    <cv-grid fullWidth class="resultado">
-      <cv-row>
-        <cv-column>
-          <RelatedGoals />
-        </cv-column>
-      </cv-row>
+      <cv-content-switcher-content owner-id="tabelas">
+        <h3>Tabelas</h3>
 
-      <cv-row>
-        <cv-column>
-          <IndicatorsDistributionTable />
-        </cv-column>
-        <cv-column>
-          <IndicatorsDistributionChart />
-        </cv-column>
-      </cv-row>
-    </cv-grid>
+        <IndicatorsDistributionChart />
+       
+      </cv-content-switcher-content>
+    </section>
   </div>
 </template>
 
@@ -49,7 +69,7 @@ export default {
     }
   },
   created() {
-    if (!this.requestedAnalysis) 
+    if (!this.requestedAnalysis)
       this.$router.push('/avaliar-projeto')
   },
   computed: {
@@ -63,10 +83,23 @@ export default {
 <style lang="scss">
 @import "../styles/carbon";
 
+.result-container {
+  width: 90%;
+}
+
 .navigation {
+  align-items: center;
   margin-top: 8px;
   display: flex;
   justify-content: space-between;
+}
+
+.content-switcher {
+  width: 40%;
+}
+
+.bx--content-switcher--selected, .bx--content-switcher-btn::after {
+  background-color: blue !important;
 }
 
 .resultado {
@@ -74,5 +107,10 @@ export default {
   grid-gap: 70px;
   margin-top: 40px;
   padding: 0;
+  width: 100%;
+}
+
+.max-row-height {
+  height: 400px;
 }
 </style>

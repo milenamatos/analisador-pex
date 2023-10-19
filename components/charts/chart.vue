@@ -11,7 +11,11 @@ export default {
   props: {
     categories: {
       type: Array,
-      required: true
+      default: []
+    },
+    colors: {
+      type: Array,
+      default: []
     },
     dataLabels: {
       type: Boolean,
@@ -46,8 +50,9 @@ export default {
           type: this.type,
           zoom: {
             enabled: this.zoom
-          }
+          },
         },
+        colors: this.colors,
         dataLabels: {
           enabled: this.dataLabels
         },
@@ -58,11 +63,8 @@ export default {
           text: this.title,
           align: 'left'
         },
-        grid: {
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5
-          }
+        stroke: {
+          width: [0, 4]
         },
         xaxis: {
           categories: this.categories

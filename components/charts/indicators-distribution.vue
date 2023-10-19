@@ -1,6 +1,11 @@
 <template>
-  <Chart title="Distribuição Indicadores de Extensão Universitária" type="line" :categories="indicatorCategories"
-    :series="series" :yaxis="yaxis" />
+  <Chart 
+    class="chart"
+    title="Distribuição Indicadores de Extensão Universitária" 
+    type="line" 
+    :series="series" 
+    :yaxis="yaxis" 
+  />
 </template>
 
 <script>
@@ -25,25 +30,29 @@ export default {
       return indicatorsConfig.map(item => ({
         name: item.title,
         category: item.dataLabel,
-        style: item.style
+        color: item.hexColor
       }))
     },
-    indicatorCategories() {
-      return this.indicatorsConfig.map(item => item.name)
-    },
-    indicatorValues() {
-      return this.indicatorsConfig.map(item => this.groupedIndicators[item.category] || 0)
+    indicatorData() {
+      return this.indicatorsConfig.map(item => ({
+        x: item.name.split(" ")[0],
+        y: this.groupedIndicators[item.category] || 0,
+        fillColor: item.color
+      }))
     },
     indicatorPercentages() {
-      return this.indicatorsConfig.map(item => this.getPercentage(item.category))
+      return this.indicatorsConfig.map(item => ({
+        x: '',
+        y: this.getPercentage(item.category)
+      }))
     },
     series() {
       return [{
         name: 'Quantidade',
         type: 'column',
-        data: this.indicatorValues
+        data: this.indicatorData
       }, {
-        name: '%',
+        name: 'Porcentagem',
         type: 'line',
         data: this.indicatorPercentages
       }]
@@ -57,7 +66,7 @@ export default {
       }, {
         opposite: true,
         title: {
-          text: 'Porcentagem'
+          text: 'Porcentagem (%)'
         }
       }]
     }
@@ -70,3 +79,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.chart {
+  height: 400px;
+}
+</style>
