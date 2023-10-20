@@ -60,9 +60,9 @@ export const actions = {
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
     const body = { goals, indicators }
-    const { data } = await apexApi.post("/goals", body)
+    const { data: { relatedGoals } } = await apexApi.post("/analysis", body)
 
     commit('setRequestedAnalysis', true)
-    commit('setRelatedGoals', data)
+    commit('setRelatedGoals', relatedGoals)
   }
 }
