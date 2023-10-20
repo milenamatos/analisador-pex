@@ -5,7 +5,7 @@
         Realizar outra análise
       </cv-button>
 
-      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção' @selected="onSelected">
+      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção'>
         <cv-content-switcher-button owner-id="relatorio" :selected="selectedIndex === 0">
           Relatório
         </cv-content-switcher-button>
@@ -29,14 +29,22 @@
               <RelatedGoals />
             </cv-column>
           </cv-row>
-          <cv-row>
-            <cv-column class="max-row-height">
+          
+          <cv-row class="max-row-height">
+            <cv-column>
               <IndicatorsDistributionChart />
             </cv-column>
             <cv-column>
               <IndicatorsDistributionTable />
             </cv-column>
           </cv-row>
+
+          <cv-row>
+            <cv-column>
+              <GoalsDistributionTable />
+            </cv-column>
+          </cv-row>
+        
         </cv-grid>
       </cv-content-switcher-content>
 
@@ -55,17 +63,20 @@ import { mapState } from 'vuex'
 import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
+import GoalsDistributionTable from '~/components/tables/goals-distribution'
 
 export default {
   name: 'ResultadoPage',
   components: {
     RelatedGoals,
     IndicatorsDistributionTable,
-    IndicatorsDistributionChart
+    IndicatorsDistributionChart,
+    GoalsDistributionTable
   },
   data() {
     return {
       exportIcon: require('~/assets/icons/generate-pdf.svg'),
+      selectedIndex: 0
     }
   },
   created() {
@@ -84,7 +95,7 @@ export default {
 @import "../styles/carbon";
 
 .result-container {
-  width: 90%;
+  width: 80%;
 }
 
 .navigation {
@@ -112,5 +123,6 @@ export default {
 
 .max-row-height {
   height: 400px;
+  margin-bottom: 30px;
 }
 </style>

@@ -7,7 +7,8 @@ export const state = () => ({
     goals: []
   },
   requestedAnalysis: false,
-  relatedGoals: []
+  relatedGoals: [],
+  goalsDistribution: []
 })
 
 export const getters = {
@@ -37,6 +38,10 @@ export const mutations = {
 
   setRelatedGoals(state, value) {
     state.relatedGoals = value
+  },
+
+  setGoalsDistribution(state, value) {
+    state.goalsDistribution = value
   }
 }
 
@@ -60,9 +65,10 @@ export const actions = {
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
     const body = { goals, indicators }
-    const { data: { relatedGoals } } = await apexApi.post("/analysis", body)
+    const { data: { relatedGoals, goalsDistribution } } = await apexApi.post("/analysis", body)
 
     commit('setRequestedAnalysis', true)
     commit('setRelatedGoals', relatedGoals)
+    commit('setGoalsDistribution', goalsDistribution)
   }
 }
