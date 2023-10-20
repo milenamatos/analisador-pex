@@ -11,11 +11,11 @@ export default {
   props: {
     categories: {
       type: Array,
-      default: []
+      default: () => []
     },
     colors: {
       type: Array,
-      default: []
+      default: () => []
     },
     dataLabels: {
       type: Boolean,
@@ -39,7 +39,7 @@ export default {
     },
     yaxis: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   computed: {
