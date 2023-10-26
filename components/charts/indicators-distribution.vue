@@ -1,8 +1,8 @@
 <template>
   <Chart 
-    class="chart"
     title="Distribuição Indicadores de Extensão Universitária" 
     type="line" 
+    height="400"
     :series="series" 
     :yaxis="yaxis" 
   />
@@ -79,9 +79,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.chart {
-  height: 400px;
-}
-</style>

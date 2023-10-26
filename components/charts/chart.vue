@@ -1,5 +1,5 @@
 <template>
-  <apexchart :options="chartOptions" :series="series" />
+  <apexchart :options="chartOptions" :series="series" :height="height"/>
 </template>
 
 <script>
@@ -40,7 +40,11 @@ export default {
     yaxis: {
       type: Array,
       default: () => []
-    }
+    },
+    height: {
+      type: String,
+      default: "400"
+    },
   },
   computed: {
     chartOptions() {
@@ -69,7 +73,17 @@ export default {
         xaxis: {
           categories: this.categories
         },
-        yaxis: this.yaxis
+        yaxis: this.yaxis,
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            legend: {
+              position: 'bottom',
+              offsetX: 10,
+              offsetY: 0
+            }
+          }
+        }],
       }
     }
   }

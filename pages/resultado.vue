@@ -30,7 +30,7 @@
             </cv-column>
           </cv-row>
           
-          <cv-row class="max-row-height">
+          <cv-row>
             <cv-column>
               <IndicatorsDistributionChart />
             </cv-column>
@@ -119,10 +119,5 @@ export default {
   margin-top: 40px;
   padding: 0;
   width: 100%;
-}
-
-.max-row-height {
-  height: 400px;
-  margin-bottom: 30px;
 }
 </style>
