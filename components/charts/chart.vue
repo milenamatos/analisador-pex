@@ -1,5 +1,5 @@
 <template>
-  <apexchart :options="chartOptions" :series="series" :height="height"/>
+  <apexchart :options="chartOptions" :series="series" :height="height" />
 </template>
 
 <script>
@@ -20,6 +20,10 @@ export default {
     dataLabels: {
       type: Boolean,
       default: false
+    },
+    legend: {
+      type: Boolean,
+      default: true
     },
     series: {
       type: Array,
@@ -49,6 +53,9 @@ export default {
   computed: {
     chartOptions() {
       return {
+        legend: {
+          show: this.legend
+        },
         type: this.type,
         chart: {
           type: this.type,

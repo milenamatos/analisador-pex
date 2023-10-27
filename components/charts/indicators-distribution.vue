@@ -2,7 +2,8 @@
   <Chart 
     title="Distribuição Indicadores de Extensão Universitária" 
     type="line" 
-    height="400"
+    height="350"
+    :legend="false"
     :series="series" 
     :yaxis="yaxis" 
   />
@@ -35,7 +36,7 @@ export default {
     },
     indicatorData() {
       return this.indicatorsConfig.map(item => ({
-        x: item.name.split(" ")[0],
+        x: item.name,
         y: this.groupedIndicators[item.category] || 0,
         fillColor: item.color
       }))
