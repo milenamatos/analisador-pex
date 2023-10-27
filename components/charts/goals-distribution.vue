@@ -1,6 +1,6 @@
 <template>
   <Chart 
-    title="Distribuição ODS" 
+    title="Distribuição dos ODS" 
     type="bar" 
     :categories="categories"
     :series="series" 
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Chart from './chart'
 
 export default {
@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     ...mapState('keyword', ['goals']),
-    ...mapState('formData', ['goalsDistribution']),
+    ...mapGetters('formData', ['getGoalDistribution']),
     goalIds() {
       return Object.keys(this.goals)
     },
@@ -33,7 +33,6 @@ export default {
       }
     },
     series() {
-      console.log(this.formattedData.direct)
       return [{
         name: 'Direto',
         data: this.formattedData.direct
@@ -48,11 +47,6 @@ export default {
           text: 'Quantidade',
         },
       }]
-    }
-  },
-  methods: {
-    getGoalDistribution(goalId, relation) {
-      return this.goalsDistribution.find(item => item.id == goalId && item.relation === relation)?.count || 0
     }
   }
 }

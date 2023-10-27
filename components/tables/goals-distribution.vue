@@ -1,8 +1,8 @@
 <template>
   <cv-data-table 
     class="table"
-    title="Distribuição ODS"
-    helperText="A tabela abaixo apresenta...."
+    title="Distribuição dos ODS"
+    helperText="A tabela abaixo apresenta a quantidade de relacionamentos dos ODS, de forma direta e indireta"
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="Lista de ODS" name="" />
@@ -45,23 +45,18 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'GoalsDistribution',
   computed: {
     ...mapState('keyword', ['goals']),
-    ...mapState('formData', ['goalsDistribution']),
+    ...mapGetters('formData', ['getGoalDistribution']),
     formattedGoalsDistribution() {
       return Object.keys(this.goals).map(goalId => ({
         direct: this.getGoalDistribution(goalId, 'direct'),
         indirect: this.getGoalDistribution(goalId, 'indirect')
       }))
-    }
-  },
-  methods: {
-    getGoalDistribution(goalId, relation) {
-      return this.goalsDistribution.find(item => item.id == goalId && item.relation === relation)?.count || 0
     }
   }
 }

@@ -20,7 +20,10 @@ export const getters = {
         ? result[indicator.label]+1
         : 1
       return result;
-    }, {})
+    }, {}),
+  getGoalDistribution: (state) => (goalId, relation) => {
+    return state.goalsDistribution.find(item => item.id == goalId && item.relation === relation)?.count || 0
+  }
 }
 
 export const mutations = {
