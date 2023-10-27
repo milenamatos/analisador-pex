@@ -34,14 +34,14 @@
             <cv-column>
               <IndicatorsDistributionChart />
             </cv-column>
-            <cv-column>
+            <!-- <cv-column>
               <IndicatorsDistributionTable />
-            </cv-column>
+            </cv-column> -->
           </cv-row>
 
           <cv-row>
             <cv-column>
-              <GoalsDistributionTable />
+              <GoalsDistributionChart />
             </cv-column>
           </cv-row>
         
@@ -51,7 +51,7 @@
       <cv-content-switcher-content owner-id="tabelas">
         <h3>Tabelas</h3>
 
-        <IndicatorsDistributionChart />
+        <GoalsDistributionTable />
        
       </cv-content-switcher-content>
     </section>
@@ -64,6 +64,7 @@ import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
 import GoalsDistributionTable from '~/components/tables/goals-distribution'
+import GoalsDistributionChart from '~/components/charts/goals-distribution'
 
 export default {
   name: 'ResultadoPage',
@@ -71,7 +72,8 @@ export default {
     RelatedGoals,
     IndicatorsDistributionTable,
     IndicatorsDistributionChart,
-    GoalsDistributionTable
+    GoalsDistributionTable,
+    GoalsDistributionChart
   },
   data() {
     return {

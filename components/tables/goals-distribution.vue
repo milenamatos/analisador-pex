@@ -53,10 +53,15 @@ export default {
     ...mapState('keyword', ['goals']),
     ...mapState('formData', ['goalsDistribution']),
     formattedGoalsDistribution() {
-      return Object.keys(this.goals).map(goal_id => ({
-        direct: this.goalsDistribution.find(item => item.id == goal_id && item.relation === 'direct')?.count || 0,
-        indirect: this.goalsDistribution.find(item => item.id == goal_id && item.relation === 'indirect')?.count || 0
+      return Object.keys(this.goals).map(goalId => ({
+        direct: this.getGoalDistribution(goalId, 'direct'),
+        indirect: this.getGoalDistribution(goalId, 'indirect')
       }))
+    }
+  },
+  methods: {
+    getGoalDistribution(goalId, relation) {
+      return this.goalsDistribution.find(item => item.id == goalId && item.relation === relation)?.count || 0
     }
   }
 }
