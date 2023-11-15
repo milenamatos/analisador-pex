@@ -1,14 +1,13 @@
 import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
+  analysisData: {},
   formData: {},
   formattedData: {
     indicators: [],
     goals: []
   },
   requestedAnalysis: false,
-  relatedGoals: [],
-  goalsDistribution: []
 })
 
 export const getters = {
@@ -22,7 +21,7 @@ export const getters = {
       return result;
     }, {}),
   getGoalDistribution: (state) => (goalId, relation) => {
-    return state.goalsDistribution.find(item => item.id == goalId && item.relation === relation)?.count || 0
+    return state.analysisData.goalsDistribution.find(item => item.id == goalId && item.relation === relation)?.count || 0
   }
 }
 
@@ -39,12 +38,8 @@ export const mutations = {
     state.requestedAnalysis = value
   },
 
-  setRelatedGoals(state, value) {
-    state.relatedGoals = value
-  },
-
-  setGoalsDistribution(state, value) {
-    state.goalsDistribution = value
+  setAnalysisData(state, value) {
+    state.analysisData = value
   }
 }
 
@@ -68,10 +63,9 @@ export const actions = {
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
     const body = { goals, indicators }
-    const { data: { relatedGoals, goalsDistribution } } = await apexApi.post("/analysis", body)
+    const { data } = await apexApi.post("/analysis", body)
 
     commit('setRequestedAnalysis', true)
-    commit('setRelatedGoals', relatedGoals)
-    commit('setGoalsDistribution', goalsDistribution)
+    commit('setAnalysisData', data)
   }
 }

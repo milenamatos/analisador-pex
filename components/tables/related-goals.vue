@@ -57,7 +57,10 @@ export default {
   computed: {
     ...mapGetters('indicator', ['indicatorList']),
     ...mapState('keyword', ['goals']),
-    ...mapState('formData', ['relatedGoals'])
+    ...mapState('formData', ['analysisData']),
+    relatedGoals() {
+      return this.analysisData.relatedGoals
+    }
   },
   methods: {
     getRowStyle(indicator) {
