@@ -5,14 +5,14 @@
         Realizar outra análise
       </cv-button>
 
-      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção'>
+      <!-- <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção'>
         <cv-content-switcher-button owner-id="relatorio" :selected="selectedIndex === 0">
           Relatório
         </cv-content-switcher-button>
         <cv-content-switcher-button owner-id="tabelas" :selected="selectedIndex === 1">
           Tabelas
         </cv-content-switcher-button>
-      </cv-content-switcher>
+      </cv-content-switcher> -->
 
 
       <cv-button :icon="exportIcon" @click="">
@@ -21,7 +21,7 @@
     </div>
 
     <section style="margin: 10px 0;">
-      <cv-content-switcher-content owner-id="relatorio">
+      <!-- <cv-content-switcher-content owner-id="relatorio"> -->
         <h3>Relatório de análise</h3>
         <cv-grid fullWidth class="resultado">
           <cv-row>
@@ -34,9 +34,16 @@
             <cv-column>
               <IndicatorsDistributionChart />
             </cv-column>
-            <!-- <cv-column>
-              <IndicatorsDistributionTable />
-            </cv-column> -->
+
+            <cv-column>
+              <IndicatorsDistributionTable/>
+            </cv-column>
+          </cv-row>
+
+          <cv-row>
+            <cv-column>
+              <PointsDistributionTable />
+            </cv-column>
           </cv-row>
 
           <cv-row>
@@ -44,16 +51,15 @@
               <GoalsDistributionChart />
             </cv-column>
           </cv-row>
-        
         </cv-grid>
-      </cv-content-switcher-content>
+      <!-- </cv-content-switcher-content> -->
 
-      <cv-content-switcher-content owner-id="tabelas">
+      <!-- <cv-content-switcher-content owner-id="tabelas">
         <h3>Tabelas</h3>
 
         <GoalsDistributionTable />
        
-      </cv-content-switcher-content>
+      </cv-content-switcher-content> -->
     </section>
   </div>
 </template>
@@ -65,6 +71,7 @@ import IndicatorsDistributionTable from '~/components/tables/indicators-distribu
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
 import GoalsDistributionTable from '~/components/tables/goals-distribution'
 import GoalsDistributionChart from '~/components/charts/goals-distribution'
+import PointsDistributionTable from '~/components/tables/points-distribution'
 
 export default {
   name: 'ResultadoPage',
@@ -73,7 +80,8 @@ export default {
     IndicatorsDistributionTable,
     IndicatorsDistributionChart,
     GoalsDistributionTable,
-    GoalsDistributionChart
+    GoalsDistributionChart,
+    PointsDistributionTable
   },
   data() {
     return {
