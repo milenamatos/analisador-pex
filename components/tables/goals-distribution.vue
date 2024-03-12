@@ -9,6 +9,7 @@
 
       <cv-data-table-heading 
         v-for="item in goals"
+        :key="item.id"
         :heading="`ODS ${item.id}`"
         :name="item.id"
       />

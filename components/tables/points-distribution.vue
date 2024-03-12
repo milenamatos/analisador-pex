@@ -9,6 +9,7 @@
 
       <cv-data-table-heading 
         v-for="item in goals"
+        :key="item.goal"
         :heading="item.goal"
         :name="item.goal"
       />
@@ -17,6 +18,7 @@
     <template v-slot:data>
       <cv-data-table-row 
         v-for="item in indicatorsConfig"
+        :key="item.title"
       >
         <cv-data-table-cell :style="item.style">
           {{ item.title }}
@@ -24,6 +26,7 @@
 
         <cv-data-table-cell 
           v-for="goal in getIndicatorGoals(item.title)"
+          :key="goal.goal"
         >
           {{ goal.points }}
         </cv-data-table-cell>
