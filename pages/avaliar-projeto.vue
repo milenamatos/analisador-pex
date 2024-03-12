@@ -78,6 +78,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('goal', ['goals']),
     ...mapGetters('keyword', ['keywords']),
     ...mapGetters('indicator', ['indicators']),
     ...mapGetters('formData', ['formData']),
@@ -101,6 +102,7 @@ export default {
   async beforeMount() {
     await this.getKeywords();
     await this.getIndicators();  
+    await this.getGoals();
 
     this.filledSteps = formSteps.steps.map(step => {
       return step.map(field => ({
@@ -114,6 +116,7 @@ export default {
 
   },
   methods: {
+    ...mapActions('goal', ['getGoals']),
     ...mapActions('keyword', ['getKeywords']),
     ...mapActions('indicator', ['getIndicators']),
     ...mapActions('formData', ['setFormData', 'fetchAnalysis']),

@@ -18,7 +18,7 @@ export default {
     Chart
   },
   computed: {
-    ...mapState('keyword', ['goals']),
+    ...mapState('goal', ['goals']),
     ...mapGetters('formData', ['getGoalDistribution']),
     goalIds() {
       return Object.keys(this.goals)

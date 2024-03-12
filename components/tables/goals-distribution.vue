@@ -50,7 +50,7 @@ import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'GoalsDistribution',
   computed: {
-    ...mapState('keyword', ['goals']),
+    ...mapState('goal', ['goals']),
     ...mapGetters('formData', ['getGoalDistribution']),
     formattedGoalsDistribution() {
       return Object.keys(this.goals).map(goalId => ({

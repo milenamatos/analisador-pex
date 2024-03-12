@@ -56,7 +56,7 @@ export default {
   name: 'RelatedGoals',
   computed: {
     ...mapGetters('indicator', ['indicatorList']),
-    ...mapState('keyword', ['goals']),
+    ...mapState('goal', ['goals']),
     ...mapState('formData', ['analysisData']),
     relatedGoals() {
       return this.analysisData.relatedGoals

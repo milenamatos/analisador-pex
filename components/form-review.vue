@@ -71,7 +71,10 @@ export default {
       const selected = []
       fieldsConfig.forEach(({label, style}) => {
         this.formData[label]?.forEach(id => {
-          selected.push({id, label, style})
+          const foundItem = selected.find(item => item.id === id)
+          if (!foundItem) {
+            selected.push({id, label, style})
+          }
         })
       })
       return selected

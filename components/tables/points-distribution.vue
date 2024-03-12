@@ -39,7 +39,6 @@ import formSteps from '~/assets/form-steps.json'
 export default {
   name: 'PoalsDistribution',
   computed: {
-    ...mapState('keyword', ['goals']),
     ...mapState('formData', ['analysisData']),
     indicatorsConfig() {
       const index = formSteps.stepNumber['indicators']

@@ -56,13 +56,16 @@ export const actions = {
     const keywordList = rootGetters['keyword/keywordList']
     const indicatorList = rootGetters['indicator/indicatorList']
 
-    const goals = [...new Set(
-      state.formattedData.keywords.map(item => keywordList[item.id].Goal.id)
-    )]
+    const goals = 
+      state.formattedData.keywords.reduce((result, keyword) => {
+        return result.concat(keywordList[keyword.id].goals)
+      }, [])
+      .map(goal => goal.id)
 
+    const uniqueGoals = [...new Set(goals)]
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
-    const body = { goals, indicators }
+    const body = { goals: uniqueGoals, indicators }
     const { data } = await apexApi.post("/analysis", body)
 
     commit('setRequestedAnalysis', true)
