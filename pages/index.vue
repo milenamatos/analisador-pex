@@ -5,7 +5,7 @@
 export default {
   name: 'IndexPage',
   created() {
-    this.$router.push('/avaliar-projeto')
+    this.$router.push('/analisar-projeto')
   }
 }
 </script>

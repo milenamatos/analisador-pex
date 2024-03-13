@@ -5,8 +5,8 @@
     </cv-header-name>
     
     <cv-header-nav aria-label="Navegação menu">
-      <cv-header-menu-item class="header-menu__item" href="/avaliar-projeto">
-        Avaliar projeto
+      <cv-header-menu-item class="header-menu__item" href="/analisar-projeto">
+        Analisar projeto
       </cv-header-menu-item>
       <cv-header-menu-item class="header-menu__item">
         Sobre nós
