@@ -1,9 +1,9 @@
 {
   "stepNames": [
     "Informações básicas",
-    "Selecionar tópicos",
-    "Selecionar indicadores",
-    "Revisar dados"
+    "Tópicos relacionados",
+    "Indicadores de extensão",
+    "Revisão dos dados"
   ],
   "stepNumber": {
     "keywords": 1,
@@ -13,7 +13,7 @@
   [{
     "dataLabel": "name",
     "name": "cv-text-input", 
-    "label": "Nome do projeto",
+    "label": "Nome do projeto *",
     "placeholder": "Projeto de exemplo",
     "helperText": "Insira um nome que ajude a identificar o seu projeto"
   }, {

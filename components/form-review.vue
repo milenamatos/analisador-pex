@@ -1,33 +1,37 @@
 <template>
-  <div class="form-review">
-    <h5>Nome:</h5>
-    <span>{{ formData.name }}</span>
+  <div>
+    <h4 class="title">Resumo dos dados informados para análise</h4>
 
-    <h5>Descrição:</h5>
-    <span>{{ formData.description }}</span>
+    <div class="form-review">
+      <h5>Nome:</h5>
+      <span>{{ formData.name }}</span>
 
-    <h5>Tópicos:</h5>
-    <div>
-      <cv-tag 
-        v-for="(item, index) in selectedData.keywords" 
-        :key="index"
-        :label="keywordList[item.id].name"
-        filter
-        @remove="removeItem(item)">
-      </cv-tag>
-    </div>
+      <h5>Descrição:</h5>
+      <span>{{ formData.description }}</span>
 
-    <h5>Indicadores:</h5>
-    <div>
-      <cv-tag 
-        v-for="(item, index) in selectedData.indicators" 
-        :key="index"
-        :label="indicatorList[item.id].name"
-        :kind="item.style.color"
-        :class="item.style.class"
-        filter
-        @remove="removeItem(item)">
-      </cv-tag>
+      <h5>Tópicos:</h5>
+      <div>
+        <cv-tag 
+          v-for="(item, index) in selectedData.keywords" 
+          :key="index"
+          :label="keywordList[item.id].name"
+          filter
+          @remove="removeItem(item)">
+        </cv-tag>
+      </div>
+
+      <h5>Indicadores:</h5>
+      <div>
+        <cv-tag 
+          v-for="(item, index) in selectedData.indicators" 
+          :key="index"
+          :label="indicatorList[item.id].name"
+          :kind="item.style.color"
+          :class="item.style.class"
+          filter
+          @remove="removeItem(item)">
+        </cv-tag>
+      </div>
     </div>
   </div>
 </template>
@@ -90,6 +94,10 @@ export default {
 
 <style lang="scss">
 @import "../styles/carbon";
+
+.title {
+  margin: 24px auto;
+}
 
 .form-review {
   display: grid;

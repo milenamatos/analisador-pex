@@ -1,13 +1,13 @@
 <template>
   <div class="avaliar-projeto">
-    <h3>Analise seu projeto de acordo com os indicadores FORPROEX e Objetivos de Desenvolvimento Sustentável!</h3>
+    <h3 class="align-center">Analise seu projeto de acordo com os indicadores FORPROEX e Objetivos de Desenvolvimento Sustentável!</h3>
 
-    <p>Preencha as informações no formulário abaixo para realizar sua avaliação. Seus dados não serão salvos nem
+    <p class="align-center">Preencha as informações no formulário abaixo para realizar sua avaliação. Seus dados não serão salvos nem
       compartilhados.</p>
 
     <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="stepNames" />
 
-    <div>
+    <div class="form-content">
       <div 
         v-for="(step, stepIndex) in filledSteps" 
         v-show="stepIndex === currentStepNumber"
@@ -36,8 +36,11 @@
         />
       </div>
 
+      <p v-if="isFirstStep">* Campo obrigatório</p>
+      <p v-else-if="!isLastStep">OBS: Selecione pelo menos 1 item de alguma das categorias</p>
+
       <div :class='["form-navigation", {
-          "form-navigation-first-step": currentStepNumber == 0
+          "form-navigation-first-step": isFirstStep
         }]'>
         <cv-button 
           v-if="currentStepNumber > 0" 
@@ -47,9 +50,20 @@
         >
           Voltar
         </cv-button>
+        
         <cv-button :icon="nextButtonIcon" :disabled="isLoading" @click="nextButton">
           {{ nextButtonLabel }}
         </cv-button>
+      </div>
+
+      <div v-if="showToast" class="toast">
+        <cv-toast-notification
+          kind="warning"
+          title="Não é possível prosseguir"
+          caption="Preencha os campos necessários no formulário para continuar"
+          @close="showToast = false"
+          lowContrast>
+        </cv-toast-notification>
       </div>
     </div>
 
@@ -75,6 +89,7 @@ export default {
       filledSteps: [],
       stepNames: formSteps.stepNames,
       isLoading: false,
+      showToast: false
     }
   },
   computed: {
@@ -84,6 +99,9 @@ export default {
     ...mapGetters('formData', ['formData']),
     currentStep() {
       return this.filledSteps[this.currentStepNumber]
+    },
+    isFirstStep() {
+      return this.currentStepNumber === 0
     },
     isLastStep() {
       return this.currentStepNumber === formSteps.steps.length - 1
@@ -95,7 +113,7 @@ export default {
     },
     nextButtonLabel() {
       return this.isLastStep
-        ? "Realizar Avaliação"
+        ? "Realizar Análise"
         : "Próximo"
     }
   },
@@ -130,7 +148,7 @@ export default {
     validateForm() {
       return this.currentStepNumber == 0
         ? this.currentStep.every((item) => !!this.formData[item.dataLabel] || !!item.optional)
-        : this.currentStep.some((item) => !!this.formData[item.dataLabel])
+        : this.currentStep.some((item) => this.formData[item.dataLabel]?.length)
     },
     previousButton() {
       setTimeout(() => {
@@ -145,7 +163,10 @@ export default {
         this.$router.push('/resultado')
       } else {
         if (this.validateForm()) {
+          this.showToast = false
           this.currentStepNumber++
+        } else {
+          this.showToast = true
         }
       }
     }
@@ -163,15 +184,21 @@ export default {
   margin-top: 16px;
   text-align: start;
   width: 90%;
+}
 
-  h3,
-  p {
-    text-align: center;
-  }
+.align-center {
+  text-align: center;
 }
 
 .stepper {
   justify-content: center;
+  margin-top: 32px;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .form {
@@ -180,13 +207,14 @@ export default {
 }
 
 .form-navigation {
-  margin-top: 8px;
   display: flex;
   justify-content: space-between;
 }
 
 .form-navigation-first-step {
+  display: grid;
   justify-content: flex-end;
+  justify-items: flex-end;
 }
 
 .bx--progress-step,
@@ -200,5 +228,13 @@ export default {
 
 .bx--label {
   color: inherit;
+}
+
+.toast {
+  align-self: flex-end;
+  bottom: 150px;
+  position: relative;
+  right: 130px;
+  z-index: 2;
 }
 </style>
