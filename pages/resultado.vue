@@ -5,15 +5,14 @@
         Realizar outra análise
       </cv-button>
 
-      <!-- <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção'>
+      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção'>
         <cv-content-switcher-button owner-id="relatorio" :selected="selectedIndex === 0">
           Relatório
         </cv-content-switcher-button>
         <cv-content-switcher-button owner-id="tabelas" :selected="selectedIndex === 1">
           Tabelas
         </cv-content-switcher-button>
-      </cv-content-switcher> -->
-
+      </cv-content-switcher>
 
       <cv-button :icon="exportIcon" @click="">
         Exportar
@@ -21,7 +20,8 @@
     </div>
 
     <section style="margin: 10px 0;">
-      <!-- <cv-content-switcher-content owner-id="relatorio"> -->
+      
+      <cv-content-switcher-content owner-id="relatorio">
         <h3>Relatório de análise</h3>
         <cv-grid fullWidth class="resultado">
           <cv-row>
@@ -33,10 +33,6 @@
           <cv-row>
             <cv-column>
               <IndicatorsDistributionChart />
-            </cv-column>
-
-            <cv-column>
-              <IndicatorsDistributionTable/>
             </cv-column>
           </cv-row>
 
@@ -52,14 +48,25 @@
             </cv-column>
           </cv-row>
         </cv-grid>
-      <!-- </cv-content-switcher-content> -->
+      </cv-content-switcher-content>
 
-      <!-- <cv-content-switcher-content owner-id="tabelas">
+      <cv-content-switcher-content owner-id="tabelas">
         <h3>Tabelas</h3>
 
-        <GoalsDistributionTable />
-       
-      </cv-content-switcher-content> -->
+        <cv-grid fullWidth class="resultado">
+          <cv-row>
+            <cv-column>
+              <IndicatorsDistributionTable/>
+            </cv-column>
+          </cv-row>
+
+          <cv-row>
+            <cv-column>
+              <GoalsDistributionTable />
+            </cv-column>
+          </cv-row>
+        </cv-grid>
+      </cv-content-switcher-content>
     </section>
   </div>
 </template>
