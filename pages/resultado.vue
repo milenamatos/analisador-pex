@@ -1,7 +1,7 @@
 <template>
   <div class="result-container">
     <div class="navigation">
-      <cv-button kind="tertiary" @click="$router.push('/avaliar-projeto')">
+      <cv-button kind="tertiary" @click="$router.push('/analisar-projeto')">
         Realizar outra análise
       </cv-button>
 
@@ -65,6 +65,12 @@
               <GoalsDistributionTable />
             </cv-column>
           </cv-row>
+
+          <cv-row>
+            <cv-column>
+              <PointsDistributionPercentageTable />
+            </cv-column>
+          </cv-row>
         </cv-grid>
       </cv-content-switcher-content>
     </section>
@@ -79,6 +85,7 @@ import IndicatorsDistributionChart from '~/components/charts/indicators-distribu
 import GoalsDistributionTable from '~/components/tables/goals-distribution'
 import GoalsDistributionChart from '~/components/charts/goals-distribution'
 import PointsDistributionTable from '~/components/tables/points-distribution'
+import PointsDistributionPercentageTable from '~/components/tables/points-distribution-percentage'
 
 export default {
   name: 'ResultadoPage',
@@ -88,7 +95,8 @@ export default {
     IndicatorsDistributionChart,
     GoalsDistributionTable,
     GoalsDistributionChart,
-    PointsDistributionTable
+    PointsDistributionTable,
+    PointsDistributionPercentageTable
   },
   data() {
     return {
