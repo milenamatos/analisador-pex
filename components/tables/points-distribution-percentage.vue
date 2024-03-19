@@ -40,6 +40,7 @@
 <script>
 import { mapState } from 'vuex'
 import formSteps from '~/assets/form-steps.json'
+import { getDistributionPercentageByIndicator } from '~/assets/utils/analysis-data'
 
 export default {
   name: 'PoalsDistributionPercentage',
@@ -54,23 +55,11 @@ export default {
     },
     goals() {
       return this.pointsDistribution[0].goals
-    },
-    totalPoints() {
-      return this.pointsDistribution.reduce((sum, item) => {
-        return sum + 
-          item.goals.reduce((goalSum, goal) => {
-            return goalSum + parseInt(goal.points)
-          }, 0)
-      }, 0)
-    },
+    }
   },
   methods: {
     getIndicatorGoalsPercentage(indicator) {
-      const goals = this.pointsDistribution.find(item => item.indicator === indicator).goals
-      return goals.map(goal => ({
-        ...goal,
-        value: ((goal.points / this.totalPoints) * 100).toFixed(2)
-      }))
+      return getDistributionPercentageByIndicator(this.pointsDistribution, indicator)
     }
   }
 }
