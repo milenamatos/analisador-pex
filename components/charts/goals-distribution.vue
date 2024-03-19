@@ -10,8 +10,9 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import Chart from './chart'
+import { getGoalDistribution } from '~/assets/utils/analysis-data'
 
 export default {
   name: 'IndicatorsDistribution',
@@ -20,7 +21,7 @@ export default {
   },
   computed: {
     ...mapState('goal', ['goals']),
-    ...mapGetters('formData', ['getGoalDistribution']),
+    ...mapState('formData', ['analysisData']),
     goalIds() {
       return Object.keys(this.goals)
     },
@@ -28,9 +29,10 @@ export default {
       return this.goalIds.map(goalId => `ODS ${goalId}`)
     },
     formattedData() {
+      const data = this.analysisData.goalsDistribution
       return {
-        direct: this.goalIds.map(goalId => this.getGoalDistribution(goalId, 'direct')),      
-        indirect: this.goalIds.map(goalId => this.getGoalDistribution(goalId, 'indirect'))   
+        direct: this.goalIds.map(goalId => getGoalDistribution(data, goalId, 'direct')),      
+        indirect: this.goalIds.map(goalId => getGoalDistribution(data, goalId, 'indirect'))   
       }
     },
     series() {

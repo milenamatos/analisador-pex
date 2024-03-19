@@ -46,17 +46,19 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
+import { getGoalDistribution } from '~/assets/utils/analysis-data'
 
 export default {
   name: 'GoalsDistribution',
   computed: {
     ...mapState('goal', ['goals']),
-    ...mapGetters('formData', ['getGoalDistribution']),
+    ...mapState('formData', ['analysisData']),
     formattedGoalsDistribution() {
+      const data = this.analysisData.goalsDistribution
       return Object.keys(this.goals).map(goalId => ({
-        direct: this.getGoalDistribution(goalId, 'direct'),
-        indirect: this.getGoalDistribution(goalId, 'indirect')
+        direct: getGoalDistribution(data, goalId, 'direct'),
+        indirect: getGoalDistribution(data, goalId, 'indirect')
       }))
     }
   }
