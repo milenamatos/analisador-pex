@@ -2,7 +2,7 @@
   <cv-data-table 
     class="table"
     title="Pontuação BSC - percentual"
-    helperText="A tabela abaixo apresenta..."
+    helperText="A tabela abaixo apresenta o percentual da pontuação dos indicadores selecionados sobre a pontuação total"
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="Indicador" name="" />

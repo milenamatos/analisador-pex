@@ -2,7 +2,7 @@
   <cv-data-table 
     class="table"
     title="Distribuição dos ODS"
-    helperText="A tabela abaixo apresenta a quantidade de relacionamentos dos ODS, de forma direta e indireta"
+    helperText="A tabela abaixo apresenta a quantidade de relacionamentos de cada Objetivo, de forma direta e indireta"
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="Lista de ODS" name="" />

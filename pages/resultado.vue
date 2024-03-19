@@ -22,7 +22,7 @@
     <section style="margin: 10px 0;">
       
       <cv-content-switcher-content owner-id="relatorio">
-        <h3>Relatório de análise</h3>
+        <h3>Resultado da análise</h3>
         <cv-grid fullWidth class="resultado">
           <cv-row>
             <cv-column>
@@ -51,7 +51,7 @@
       </cv-content-switcher-content>
 
       <cv-content-switcher-content owner-id="tabelas">
-        <h3>Tabelas</h3>
+        <h3>Tabelas informativas</h3>
 
         <cv-grid fullWidth class="resultado">
           <cv-row>

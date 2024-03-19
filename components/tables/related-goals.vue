@@ -2,7 +2,7 @@
   <cv-data-table 
     class="table"
     title="Detalhamento dos ODS relacionados com cada indicador"
-    helperText="A tabela abaixo apresenta os IDs dos ODS, para ver mais detalhes, passe o mouse sobre o ODS desejado"
+    helperText="A tabela abaixo apresenta todos os ODS relacionados com os indicadores de extensão, diretamente ou indiretamente. Para ver o nome de ODS, passe o mouse sobre o ID desejado"
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="Indicador" name="name" />

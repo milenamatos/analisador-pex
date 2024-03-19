@@ -1,8 +1,8 @@
 <template>
   <cv-data-table 
     class="table"
-    title="Distribuição Indicadores de Extensão Universitária"
-    helperText="A tabela abaixo apresenta...."
+    title="Distribuição dos Indicadores de Extensão Universitária"
+    helperText="A tabela abaixo apresenta a porcentagem dos indicadores selecionados, categorizados nos quadrantes do BSC, em relação ao total de indicadores selecionados"
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="Indicador" name="name" />
