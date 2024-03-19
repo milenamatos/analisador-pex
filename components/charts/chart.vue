@@ -33,6 +33,10 @@ export default {
       type: String,
       required: true
     },
+    subtitle: {
+      type: String,
+      required: true
+    },
     type: {
       type: String,
       required: true
@@ -72,6 +76,10 @@ export default {
         },
         title: {
           text: this.title,
+          align: 'left'
+        },
+        subtitle: {
+          text: this.subtitle,
           align: 'left'
         },
         stroke: {

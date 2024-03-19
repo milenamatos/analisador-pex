@@ -1,6 +1,7 @@
 <template>
   <Chart 
     title="Distribuição Indicadores de Extensão Universitária" 
+    subtitle="O gráfico abaixo apresenta a distribuição dos indicadores, categorizados nos quadrantes do BSC, com relação ao total de indicadores selecionados"
     type="line" 
     height="350"
     :legend="false"

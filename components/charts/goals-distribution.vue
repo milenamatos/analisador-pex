@@ -1,6 +1,7 @@
 <template>
   <Chart 
     title="Distribuição dos ODS" 
+    subtitle="O gráfico abaixo apresenta a quantidade de relacionamentos observados de cada ODS, de forma direta e indireta"
     type="bar" 
     :categories="categories"
     :series="series" 
