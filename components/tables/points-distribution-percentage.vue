@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     getIndicatorGoalsPercentage(indicator) {
-      console.log(this.totalPoints)
       const goals = this.pointsDistribution.find(item => item.indicator === indicator).goals
       return goals.map(goal => ({
         ...goal,

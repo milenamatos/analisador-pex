@@ -48,7 +48,6 @@ export default {
       return formSteps.steps[index]
     },
     pointsDistribution() {
-      console.log(this.analysisData.pointsDistribution)
       return this.analysisData.pointsDistribution
     },
     goals() {
