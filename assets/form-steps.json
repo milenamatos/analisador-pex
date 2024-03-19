@@ -26,7 +26,7 @@
   }],
   [{
     "name": "cv-multi-select", 
-    "title": "Socioculturais",
+    "title": "Sociocultural",
     "options": [],
     "filterable": true,
     "autoFilter": true,
@@ -48,7 +48,7 @@
     "model": "keywords"
   },{
     "name": "cv-multi-select", 
-    "title": "Economia",
+    "title": "Econômico",
     "options": [],
     "filterable": true,
     "autoFilter": true,
