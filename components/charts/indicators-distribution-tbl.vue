@@ -1,7 +1,7 @@
 <template>
   <Chart 
-    title="Distribuição TBL" 
-    subtitle="..."
+    title="Percentual de Distribuição dos indicadores - TBL" 
+    subtitle="O gráfico abaixo apresenta a distribuição do percentual da pontuação dos indicadores selecionados sobre a pontuação total, agrupados de acordo com os pilares do TBL"
     type="bar" 
     height="350"
     :categories="categories" 

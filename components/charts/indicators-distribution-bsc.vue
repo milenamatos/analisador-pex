@@ -1,7 +1,7 @@
 <template>
   <Chart 
-    title="Distribuição BSC" 
-    subtitle="O gráfico abaixo apresenta..."
+    title="Percentual de Distribuição dos indicadores - BSC" 
+    subtitle="O gráfico abaixo apresenta a distribuição do percentual da pontuação dos indicadores selecionados sobre a pontuação total, agrupados de acordo com os quadrantes do BSC"
     type="bar" 
     height="350"
     :categories="categories" 

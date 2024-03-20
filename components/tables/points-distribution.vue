@@ -2,7 +2,7 @@
   <cv-data-table 
     class="table"
     title="Pontuação BSC"
-    helperText="A tabela abaixo apresenta a pontuação dos indicadores selecionados, categorizados nos quadrantes do BSC, com relação aos Objetivos de Desenvolvimento Sustentável, categorizados de acordo com os pilares do TBL"
+    helperText="A tabela abaixo apresenta a pontuação calculada com base nos indicadores selecionados, categorizados nos quadrantes do BSC, em relação aos Objetivos de Desenvolvimento Sustentável, categorizados de acordo com os pilares do TBL"
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="Indicador" name="" />
