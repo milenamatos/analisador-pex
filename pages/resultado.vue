@@ -20,31 +20,13 @@
     </div>
 
     <section style="margin: 10px 0;">
-      
       <cv-content-switcher-content owner-id="relatorio">
         <h3>Resultado da análise</h3>
+
         <cv-grid fullWidth class="resultado">
-          <cv-row>
+          <cv-row v-for="chart in charts" :key="chart">
             <cv-column>
-              <RelatedGoals />
-            </cv-column>
-          </cv-row>
-          
-          <cv-row>
-            <cv-column>
-              <IndicatorsDistributionChart />
-            </cv-column>
-          </cv-row>
-
-          <cv-row>
-            <cv-column>
-              <PointsDistributionTable />
-            </cv-column>
-          </cv-row>
-
-          <cv-row>
-            <cv-column>
-              <GoalsDistributionChart />
+              <component :is="chart" />
             </cv-column>
           </cv-row>
         </cv-grid>
@@ -54,21 +36,9 @@
         <h3>Tabelas informativas</h3>
 
         <cv-grid fullWidth class="resultado">
-          <cv-row>
+          <cv-row v-for="table in tables" :key="table">
             <cv-column>
-              <IndicatorsDistributionTable/>
-            </cv-column>
-          </cv-row>
-
-          <cv-row>
-            <cv-column>
-              <GoalsDistributionTable />
-            </cv-column>
-          </cv-row>
-
-          <cv-row>
-            <cv-column>
-              <PointsDistributionPercentageTable />
+              <component :is="table" />
             </cv-column>
           </cv-row>
         </cv-grid>
@@ -82,6 +52,8 @@ import { mapState } from 'vuex'
 import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
+import IndicatorsDistributionBSCChart from '~/components/charts/indicators-distribution-bsc'
+import IndicatorsDistributionTBLChart from '~/components/charts/indicators-distribution-tbl'
 import GoalsDistributionTable from '~/components/tables/goals-distribution'
 import GoalsDistributionChart from '~/components/charts/goals-distribution'
 import PointsDistributionTable from '~/components/tables/points-distribution'
@@ -93,6 +65,8 @@ export default {
     RelatedGoals,
     IndicatorsDistributionTable,
     IndicatorsDistributionChart,
+    IndicatorsDistributionBSCChart,
+    IndicatorsDistributionTBLChart,
     GoalsDistributionTable,
     GoalsDistributionChart,
     PointsDistributionTable,
@@ -101,12 +75,25 @@ export default {
   data() {
     return {
       exportIcon: require('~/assets/icons/generate-pdf.svg'),
-      selectedIndex: 0
+      selectedIndex: 0,
+      charts: [
+        'RelatedGoals',
+        'IndicatorsDistributionChart',
+        'PointsDistributionTable',
+        'GoalsDistributionChart',
+        'IndicatorsDistributionBSCChart',
+        'IndicatorsDistributionTBLChart'
+      ],
+      tables: [
+        'IndicatorsDistributionTable',
+        'GoalsDistributionTable',
+        'PointsDistributionPercentageTable'
+      ]
     }
   },
   created() {
     if (!this.requestedAnalysis)
-      this.$router.push('/avaliar-projeto')
+      this.$router.push('/analisar-projeto')
   },
   computed: {
     ...mapState('formData', ['requestedAnalysis']),
@@ -134,7 +121,8 @@ export default {
   width: 40%;
 }
 
-.bx--content-switcher--selected, .bx--content-switcher-btn::after {
+.bx--content-switcher--selected,
+.bx--content-switcher-btn::after {
   background-color: blue !important;
 }
 
