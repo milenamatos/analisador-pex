@@ -48,15 +48,15 @@ export default {
       return formSteps.steps[index]
     },
     pointsDistribution() {
-      return this.analysisData.pointsDistribution
+      return this.analysisData?.pointsDistribution
     },
     goals() {
-      return this.pointsDistribution[0].goals
+      return this.pointsDistribution?.[0].goals
     }
   },
   methods: {
     getIndicatorGoals(indicator) {
-      return this.pointsDistribution.find(item => item.indicator === indicator).goals
+      return this.pointsDistribution?.find(item => item.indicator === indicator).goals
     }
   }
 }

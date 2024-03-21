@@ -28,16 +28,17 @@ export default {
       const keywordsConfig = formSteps.steps[index]
 
       const data = this.analysisData.pointsDistribution
-      
-      return keywordsConfig.map(item => ({
-        name: item.title,
-        color: item.hexColor,
-        data: getDistributionPercentageByGoal(data, item.title).map(item => item.value)
-      }))
+
+      return data ?
+        keywordsConfig.map(item => ({
+          name: item.title,
+          color: item.hexColor,
+          data: getDistributionPercentageByGoal(data, item.title).map(item => item.value)
+        })) : []
     },
     categories() {
       const data = this.analysisData.pointsDistribution
-      return data.map(item => item.indicator)
+      return data ? data.map(item => item.indicator) : []
     },
     yaxis() {
       return [{

@@ -27,17 +27,18 @@ export default {
       const index = formSteps.stepNumber['indicators']
       const indicatorsConfig = formSteps.steps[index]
 
-      const data = this.analysisData.pointsDistribution
-      
-      return indicatorsConfig.map(item => ({
-        name: item.title,
-        color: item.hexColor,
-        data: getDistributionPercentageByIndicator(data, item.title).map(item => item.value)
-      }))
+      const data = this.analysisData?.pointsDistribution
+
+      return data ?
+        indicatorsConfig.map(item => ({
+          name: item.title,
+          color: item.hexColor,
+          data: getDistributionPercentageByIndicator(data, item.title).map(item => item.value)
+        })) : []
     },
     categories() {
-      const data = this.analysisData.pointsDistribution[0]
-      return data.goals.map(item => item.goal)
+      const data = this.analysisData?.pointsDistribution?.[0]
+      return data ? data.goals.map(item => item.goal) : []
     },
     yaxis() {
       return [{
