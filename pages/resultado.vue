@@ -14,12 +14,12 @@
         </cv-content-switcher-button>
       </cv-content-switcher>
 
-      <cv-button :icon="exportIcon" @click="">
+      <cv-button :icon="exportIcon" @click="exportToPDF">
         Exportar
       </cv-button>
     </div>
 
-    <section style="margin: 10px 0;">
+    <section style="margin: 10px 0;" ref="pdf-content">
       <cv-content-switcher-content owner-id="relatorio">
         <h3>Resultado da análise</h3>
 
@@ -49,6 +49,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import html2pdf from 'html2pdf.js'
+
 import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
@@ -91,7 +93,7 @@ export default {
       ]
     }
   },
-  created() {
+  beforeMount() {
     if (!this.requestedAnalysis)
       this.$router.push('/analisar-projeto')
   },
@@ -99,6 +101,20 @@ export default {
     ...mapState('formData', ['requestedAnalysis']),
   },
   methods: {
+    exportToPDF() {
+      const element = this.$refs["pdf-content"]
+      const opt = {
+        margin: 0.5,
+        filename: 'document.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, width: 1500, 
+          ignoreElements: element => element.className == "bx--assistive-text"
+        },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+      }
+
+      html2pdf().set(opt).from(element).save();
+    }
   }
 }
 </script>
