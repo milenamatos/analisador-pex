@@ -36,6 +36,6 @@
     "jest-environment-jsdom": "^29.1.2",
     "sass": "^1.60.0",
     "sass-loader": "10",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^4.0.1"
   }
 }
