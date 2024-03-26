@@ -1,13 +1,14 @@
 <template>
   <div>
-    <h4 class="title">Resumo dos dados informados para análise</h4>
+    <h4 class="title">Dados informados para análise</h4>
 
     <div class="form-review">
       <h5>Nome:</h5>
       <span>{{ formData.name }}</span>
 
       <h5>Descrição:</h5>
-      <span>{{ formData.description }}</span>
+      <span v-if="formData.description">{{ formData.description }}</span>
+      <span v-else class="description">*Não informado*</span>
 
       <h5>Tópicos:</h5>
       <div>
@@ -15,7 +16,7 @@
           v-for="(item, index) in selectedData.keywords" 
           :key="index"
           :label="keywordList[item.id].name"
-          filter
+          :filter="filter"
           @remove="removeItem(item)">
         </cv-tag>
       </div>
@@ -25,10 +26,10 @@
         <cv-tag 
           v-for="(item, index) in selectedData.indicators" 
           :key="index"
-          :label="indicatorList[item.id].name"
+          :label="indicatorList[item.id][label]"
           :kind="item.style.color"
           :class="item.style.class"
-          filter
+          :filter="filter"
           @remove="removeItem(item)">
         </cv-tag>
       </div>
@@ -46,6 +47,16 @@ export default {
     return {
       colors: ["blue", "green", "red"]
     };
+  },
+  props: {
+    filter: {
+      type: Boolean,
+      default: true
+    },
+    label: {
+      type: String,
+      default: 'name'
+    }
   },
   computed: {
     ...mapGetters('keyword', ['keywordList']),
@@ -97,6 +108,10 @@ export default {
 
 .title {
   margin: 24px auto;
+}
+
+.description {
+  font-style: italic;
 }
 
 .form-review {

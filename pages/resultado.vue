@@ -23,6 +23,12 @@
       <cv-content-switcher-content owner-id="relatorio">
         <h3>Resultado da análise</h3>
 
+        <FormReview 
+          :filter="false" 
+          label="formattedName"
+          class="review"
+        />
+
         <cv-grid fullWidth class="resultado">
           <cv-row v-for="chart in charts" :key="chart">
             <cv-column>
@@ -48,8 +54,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import html2pdf from 'html2pdf.js'
+
+import FormReview from "~/components/form-review"
 
 import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
@@ -64,6 +72,7 @@ import PointsDistributionPercentageTable from '~/components/tables/points-distri
 export default {
   name: 'ResultadoPage',
   components: {
+    FormReview,
     RelatedGoals,
     IndicatorsDistributionTable,
     IndicatorsDistributionChart,
@@ -140,6 +149,10 @@ export default {
 .bx--content-switcher--selected,
 .bx--content-switcher-btn::after {
   background-color: blue !important;
+}
+
+.review {
+  text-align: left;
 }
 
 .resultado {
