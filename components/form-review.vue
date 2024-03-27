@@ -12,26 +12,32 @@
 
       <h5>Tópicos:</h5>
       <div>
-        <cv-tag 
+        <cv-link 
           v-for="(item, index) in selectedData.keywords" 
           :key="index"
-          :label="keywordList[item.id].name"
-          :filter="filter"
-          @remove="removeItem(item)">
-        </cv-tag>
+        >
+          <cv-tag 
+            :label="keywordList[item.id].name"
+            :filter="filter"
+            @remove="removeItem(item)">
+          </cv-tag>
+        </cv-link>
       </div>
 
       <h5>Indicadores:</h5>
       <div>
-        <cv-tag 
+        <cv-link
           v-for="(item, index) in selectedData.indicators" 
           :key="index"
-          :label="indicatorList[item.id][label]"
-          :kind="item.style.color"
-          :class="item.style.class"
-          :filter="filter"
-          @remove="removeItem(item)">
-        </cv-tag>
+        >
+          <cv-tag  
+            :label="indicatorList[item.id][label]"
+            :kind="item.style.color"
+            :class="item.style.class"
+            :filter="filter"
+            @remove="removeItem(item)">
+          </cv-tag>
+        </cv-link>
       </div>
     </div>
   </div>
@@ -124,5 +130,10 @@ export default {
 .tag--orange {
   background-color: $yellow-20 !important;
   color: $yellow-70 !important;
+}
+
+.bx--link:hover, .bx--link:active {
+  color: inherit; 
+  text-decoration: none; 
 }
 </style>
