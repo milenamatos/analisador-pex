@@ -111,12 +111,13 @@ export default {
   },
   methods: {
     exportToPDF() {
+      const width = (document.documentElement.clientWidth * 0.9)
       const element = this.$refs["pdf-content"]
       const opt = {
         margin: 0.5,
         filename: 'document.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, width: 1500, 
+        html2canvas: { scale: 2, width, 
           ignoreElements: element => element.className == "bx--assistive-text"
         },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
@@ -132,7 +133,7 @@ export default {
 @import "../styles/carbon";
 
 .result-container {
-  width: 80%;
+  width: 90%;
 }
 
 .navigation {
