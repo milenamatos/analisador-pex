@@ -19,15 +19,17 @@
       </cv-button>
     </div>
 
-    <section style="margin: 10px 0;" ref="pdf-content">
-      <cv-content-switcher-content owner-id="relatorio">
-        <h3>Resultado da análise</h3>
+    <cv-loading :active="isLoading" overlay></cv-loading>
 
-        <FormReview 
-          :filter="false" 
-          label="formattedName"
-          class="review"
-        />
+    <cv-content-switcher-content owner-id="relatorio">
+      <section ref="pdf-content">
+        <h3 class="title">Resultado da análise</h3>
+
+        <h4 class="left-align title">
+          Análise realizada em {{ date }} às {{ time }}, através do site {{ host }}
+        </h4>
+
+        <FormReview :filter="false" label="formattedName" class="left-align" />
 
         <cv-grid fullWidth class="resultado">
           <cv-row v-for="chart in charts" :key="chart">
@@ -36,25 +38,40 @@
             </cv-column>
           </cv-row>
         </cv-grid>
-      </cv-content-switcher-content>
 
-      <cv-content-switcher-content owner-id="tabelas">
-        <h3>Tabelas informativas</h3>
+        <cv-grid 
+          v-show="showReferenceTables"
+          fullWidth 
+          class="resultado"
+        >
+          <h3 class="title">Referências e Tabelas informativas</h3>
 
-        <cv-grid fullWidth class="resultado">
           <cv-row v-for="table in tables" :key="table">
             <cv-column>
               <component :is="table" />
             </cv-column>
           </cv-row>
         </cv-grid>
-      </cv-content-switcher-content>
-    </section>
+      </section>
+    </cv-content-switcher-content>
+
+    <cv-content-switcher-content owner-id="tabelas">
+      <h3 class="title">Tabelas informativas</h3>
+
+      <cv-grid fullWidth class="resultado">
+        <cv-row v-for="table in tables" :key="table">
+          <cv-column>
+            <component :is="table" />
+          </cv-column>
+        </cv-row>
+      </cv-grid>
+    </cv-content-switcher-content>
+
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 import html2pdf from 'html2pdf.js'
 
 import FormReview from "~/components/form-review"
@@ -69,6 +86,8 @@ import GoalsDistributionChart from '~/components/charts/goals-distribution'
 import PointsDistributionTable from '~/components/tables/points-distribution'
 import PointsDistributionPercentageTable from '~/components/tables/points-distribution-percentage'
 
+import GoalsTable from '~/components/tables/goals'
+
 export default {
   name: 'ResultadoPage',
   components: {
@@ -81,12 +100,16 @@ export default {
     GoalsDistributionTable,
     GoalsDistributionChart,
     PointsDistributionTable,
-    PointsDistributionPercentageTable
+    PointsDistributionPercentageTable,
+    GoalsTable
   },
   data() {
     return {
+      createdAt: null,
       exportIcon: require('~/assets/icons/generate-pdf.svg'),
+      isLoading: false,
       selectedIndex: 0,
+      showReferenceTables: false,
       charts: [
         'RelatedGoals',
         'IndicatorsDistributionChart',
@@ -98,7 +121,8 @@ export default {
       tables: [
         'IndicatorsDistributionTable',
         'GoalsDistributionTable',
-        'PointsDistributionPercentageTable'
+        'PointsDistributionPercentageTable',
+        'GoalsTable'
       ]
     }
   },
@@ -106,24 +130,45 @@ export default {
     if (!this.requestedAnalysis)
       this.$router.push('/analisar-projeto')
   },
+  created() {
+    this.createdAt = new Date()
+  },
   computed: {
     ...mapState('formData', ['requestedAnalysis']),
+    date() {
+      return this.createdAt.toLocaleDateString()
+    },
+    time() {
+      return this.createdAt.toLocaleTimeString()
+    },
+    host() {
+      return window.location.host
+    }
   },
   methods: {
     exportToPDF() {
-      const width = (document.documentElement.clientWidth * 0.9)
-      const element = this.$refs["pdf-content"]
-      const opt = {
-        margin: 0.5,
-        filename: 'document.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, width, 
-          ignoreElements: element => element.className == "bx--assistive-text"
-        },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
-      }
+      this.isLoading = true;
+      this.showReferenceTables = true;
 
-      html2pdf().set(opt).from(element).save();
+      setTimeout(() => {
+        const width = (document.documentElement.clientWidth * 0.9)
+        const element = this.$refs["pdf-content"]
+        const opt = {
+          margin: 0.5,
+          filename: `relatorio_analisador_pex_${this.date}.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 2, width,
+            ignoreElements: element => element.className == "bx--assistive-text"
+          },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+        }
+
+        html2pdf().set(opt).from(element).save();
+
+        this.isLoading = false;
+        this.showReferenceTables = false;
+      }, 500)
     }
   }
 }
@@ -152,7 +197,7 @@ export default {
   background-color: blue !important;
 }
 
-.review {
+.left-align {
   text-align: left;
 }
 
@@ -162,5 +207,9 @@ export default {
   margin-top: 40px;
   padding: 0;
   width: 100%;
+}
+
+.title {
+  margin-top: 40px;
 }
 </style>
