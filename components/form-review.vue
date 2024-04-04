@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="title">Dados informados para análise</h4>
+    <h4 class="title">Dados informados:</h4>
 
     <div class="form-review">
       <h5>Nome:</h5>
