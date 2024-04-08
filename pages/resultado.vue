@@ -161,7 +161,8 @@ export default {
             scale: 2, width,
             ignoreElements: element => element.className == "bx--assistive-text"
           },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+          pageBreak: { mode: 'avoid-all' }
         }
 
         html2pdf().set(opt).from(element).save();
