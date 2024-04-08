@@ -6,12 +6,12 @@
     
     <cv-header-nav aria-label="Navegação menu">
       <cv-header-menu-item class="header-menu__item" href="/analisar-projeto">
-        Analisar projeto
+        Faça uma análise!
       </cv-header-menu-item>
-      <cv-header-menu-item class="header-menu__item">
-        Sobre nós
+      <cv-header-menu-item class="header-menu__item" href="/sobre">
+        Sobre o projeto
       </cv-header-menu-item>
-      <cv-header-menu-item class="header-menu__item">
+      <cv-header-menu-item class="header-menu__item" href="/tutorial">
         Tutorial
       </cv-header-menu-item>
     </cv-header-nav>
