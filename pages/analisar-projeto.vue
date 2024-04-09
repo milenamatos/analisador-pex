@@ -1,8 +1,10 @@
 <template>
   <div class="avaliar-projeto">
-    <h3 class="align-center">Analise seu projeto de acordo com os indicadores FORPROEX e Objetivos de Desenvolvimento Sustentável!</h3>
+    <h3 class="align-center">Analise seu Projeto de Extensão de acordo com os indicadores de extensão e Objetivos de Desenvolvimento Sustentável!</h3>
 
-    <p class="align-center">Preencha as informações no formulário abaixo para realizar sua avaliação. Seus dados não serão salvos nem
+    <h4>Para realizar a análise você deve selecionar dentre uma lista de tópicos e indicadores quais se enquadram com o seu projeto de extensão. A ferramenta irá fazer o cálculo e identificar os ODS relacionados com o projeto. Um relatório será apresentado após a análise e você poderá exportá-lo para PDF.</h4>
+    
+    <p class="align-center">Preencha as informações no formulário abaixo para realizar sua análise. Seus dados não serão salvos nem
       compartilhados.</p>
 
     <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="stepNames" />
