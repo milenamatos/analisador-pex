@@ -183,14 +183,24 @@ export default {
 }
 
 .navigation {
-  align-items: center;
-  margin-top: 8px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 8px;
+  row-gap: 16px;
+  
+  @media screen and (min-width: 1200px) {  
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .content-switcher {
-  width: 40%;
+  width: 100%;
+
+  @media screen and (min-width: 1200px) {  
+    width: 40%;
+  }
 }
 
 .bx--content-switcher--selected,

@@ -193,8 +193,14 @@ export default {
 }
 
 .stepper {
+  flex-direction: column;
   justify-content: center;
   margin-top: 32px;
+
+  @media screen and (min-width: 1200px) {  
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }
 
 .form-content {
@@ -236,7 +242,10 @@ export default {
   align-self: flex-end;
   bottom: 150px;
   position: relative;
-  right: 130px;
   z-index: 2;
+
+  @media screen and (min-width: 1200px) {  
+    right: 130px;
+  }
 }
 </style>
