@@ -5,11 +5,11 @@
     <div class="index-container">
       <cv-tile class="tile-content">        
         <p>
-          Considerando o contexto das universidades, o Analisador PEX (Projetos de Extensão) foi desenvolvido com o objetivo de auxiliar na visualização de informações úteis para a autoavaliação dos projetos de extensão universitária. Para isto, a ferramenta realiza uma análise por meio de cruzamentos entre indicadores dde extensão e ODS (Objetivos de Desenvolvimento Sustentável), criando uma maneira alternativa de se avaliar os projetos. 
+          Considerando o contexto das universidades, o Analisador PEX (Projetos de Extensão) foi desenvolvido com o objetivo de auxiliar na visualização de informações úteis para a autoavaliação dos projetos de extensão universitária. Para isto, a ferramenta realiza uma análise por meio de cruzamentos entre indicadores de extensão e ODS (Objetivos de Desenvolvimento Sustentável), criando uma maneira alternativa de se avaliar os projetos. 
         </p>
 
         <p>
-          Os indicadores utilizados são os Indicadores Brasileiros de Extensão Universitária (IBEU) estabelecidos pelo FORPROEX e utilizados no ramo acadêmico para medir e avaliar os projetos de extensão. Para mais detalhes, veja o relatório completo <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">aqui</cv-link>. 
+          Os indicadores utilizados são os Indicadores Brasileiros de Extensão Universitária (IBEU) estabelecidos pelo FORPROEX e utilizados no ramo acadêmico para medir e avaliar os projetos de extensão. Para mais detalhes, veja o Relatório de Pesquisa disponível <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">nesse link</cv-link>. 
           Já os ODS são todos os 17 objetivos definidos pela ONU, que estão ilustrados na figura ao lado. Para mais detalhes visite o <cv-link href="https://brasil.un.org/pt-br/sdgs" target="_blank">site oficial da ONU no Brasil</cv-link> (ou clique na imagem).
         </p>
 
