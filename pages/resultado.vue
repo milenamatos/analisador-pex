@@ -5,7 +5,7 @@
         Realizar outra análise
       </cv-button>
 
-      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção'>
+      <cv-content-switcher class="content-switcher" aria-label='Escolha uma opção' @selected="onSelected">
         <cv-content-switcher-button owner-id="relatorio" :selected="selectedIndex === 0">
           Relatório
         </cv-content-switcher-button>
@@ -14,7 +14,11 @@
         </cv-content-switcher-button>
       </cv-content-switcher>
 
-      <cv-button :icon="exportIcon" @click="exportToPDF">
+      <cv-button 
+        :disabled="selectedIndex === 1"
+        :icon="exportIcon" 
+        @click="exportToPDF"
+      >
         Exportar
       </cv-button>
     </div>
@@ -51,20 +55,20 @@
               <component :is="chart" />
             </cv-column>
           </cv-row>
-        </cv-grid>
+        
+          <section 
+            v-show="showReferenceTables"
+            fullWidth 
+            class="result"
+          >
+            <h3 class="title">Referências e Tabelas informativas</h3>
 
-        <cv-grid 
-          v-show="showReferenceTables"
-          fullWidth 
-          class="result"
-        >
-          <h3 class="title">Referências e Tabelas informativas</h3>
-
-          <cv-row v-for="table in tables" :key="table">
-            <cv-column>
-              <component :is="table" />
-            </cv-column>
-          </cv-row>
+            <cv-row v-for="table in tables" :key="table">
+              <cv-column>
+                <component :is="table" />
+              </cv-column>
+            </cv-row>
+          </section>
         </cv-grid>
       </section>
     </cv-content-switcher-content>
@@ -160,6 +164,9 @@ export default {
     }
   },
   methods: {
+    onSelected(tab) {
+      this.selectedIndex = (tab === 'relatorio') ? 0 : 1
+    },
     exportToPDF() {
       this.isLoading = true;
       this.showReferenceTables = true;
