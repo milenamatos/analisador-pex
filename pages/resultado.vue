@@ -25,13 +25,27 @@
       <section ref="pdf-content">
         <h3 class="title">Resultado da análise</h3>
 
-        <h4 class="left-align title">
-          Análise realizada em {{ date }} às {{ time }}, através do site {{ host }}
-        </h4>
+        <cv-grid fullWidth class="result">
+          <p class="left-align">
+            A análise apresentada neste relatório foi realizada em {{ date }} às {{ time }}, através do site <cv-link :href="host" target="_blank">{{ host }}</cv-link>
+          </p>
 
-        <FormReview :filter="false" label="formattedName" class="left-align" />
+          <cv-tile fullWidth class="details left-align">
+            <h4>Sobre a ferramenta:</h4> 
+            
+            <p>
+              O objetivo do Analisador PEX (Projetos de Extensão) é auxiliar na visualização de informações úteis para a autoavaliação dos projetos de extensão universitária. Para isto, a ferramenta realiza uma análise por meio de cruzamentos entre indicadores de extensão e ODS (Objetivos de Desenvolvimento Sustentável), criando uma maneira alternativa de se avaliar os projetos. 
+            </p>
+            <p>
+              Os indicadores utilizados são os Indicadores Brasileiros de Extensão Universitária (IBEU) estabelecidos pelo FORPROEX e utilizados no ramo acadêmico para medir e avaliar os projetos de extensão. Para mais detalhes, veja o Relatório de Pesquisa oficial. Já os ODS são todos os 17 objetivos definidos pela ONU. Para mais detalhes visite o <cv-link href="https://brasil.un.org/pt-br/sdgs" target="_blank">site oficial da ONU no Brasil</cv-link>.
+            </p>
+            <p>
+              Esta ferramenta foi desenvolvida como trabalho de conclusão de curso (TCC) para o curso de Ciência da Computação na UNIFESP. A metodologia utilizada para implementação desta ferramenta foi apresentada no trabalho de Mestrado Profissional de Inovação Tecnológica "Ferramenta para análise de projetos de Extensão Universitária sob a ótica da relação entre os Indicadores de Extensão e os ODS". 
+            </p>    
 
-        <cv-grid fullWidth class="resultado">
+            <FormReview :filter="false" label="formattedName" class="left-align" />
+          </cv-tile>
+
           <cv-row v-for="chart in charts" :key="chart">
             <cv-column>
               <component :is="chart" />
@@ -42,7 +56,7 @@
         <cv-grid 
           v-show="showReferenceTables"
           fullWidth 
-          class="resultado"
+          class="result"
         >
           <h3 class="title">Referências e Tabelas informativas</h3>
 
@@ -58,7 +72,7 @@
     <cv-content-switcher-content owner-id="tabelas">
       <h3 class="title">Tabelas informativas</h3>
 
-      <cv-grid fullWidth class="resultado">
+      <cv-grid fullWidth class="result">
         <cv-row v-for="table in tables" :key="table">
           <cv-column>
             <component :is="table" />
@@ -162,7 +176,8 @@ export default {
             ignoreElements: element => element.className == "bx--assistive-text"
           },
           jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-          pageBreak: { mode: 'avoid-all' }
+          pageBreak: { mode: ['avoid-all'] },
+          enableLinks: true
         }
 
         html2pdf().set(opt).from(element).save();
@@ -212,7 +227,13 @@ export default {
   text-align: left;
 }
 
-.resultado {
+.details {
+  display: grid;
+  row-gap: 16px;
+  width: 100%;
+}
+
+.result {
   display: grid;
   grid-gap: 70px;
   margin-top: 40px;
