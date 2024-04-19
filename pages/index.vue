@@ -5,16 +5,15 @@
     <div class="index-container">
       <cv-tile class="tile-content">        
         <p>
-          Considerando o contexto das universidades, o Analisador PEX (Projetos de Extensão) foi desenvolvido com o objetivo de auxiliar na visualização de informações úteis para a autoavaliação dos projetos de extensão universitária. Para isto, a ferramenta realiza uma análise por meio de cruzamentos entre indicadores de extensão e ODS (Objetivos de Desenvolvimento Sustentável), criando uma maneira alternativa de se avaliar os projetos. 
+          O Analisador PEX foi desenvolvida com o objetivo de auxiliar na visualização de informações úteis para a autoavaliação dos programas e projetos de extensão universitária. Para isto, a ferramenta realiza uma análise quantitativa por meio de cruzamentos entre os <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">Indicadores Brasileiros de Extensão Universitária</cv-link> (IBEU) e os <cv-link href="https://brasil.un.org/pt-br/sdgs" target="_blank">Objetivos de Desenvolvimento Sustentável</cv-link> (ODS), oferecendo uma maneira alternativa de se analisar os projetos sob estas duas óticas.
         </p>
 
         <p>
-          Os indicadores utilizados são os Indicadores Brasileiros de Extensão Universitária (IBEU) estabelecidos pelo FORPROEX e utilizados no ramo acadêmico para medir e avaliar os projetos de extensão. Para mais detalhes, veja o Relatório de Pesquisa disponível <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">nesse link</cv-link>. 
-          Já os ODS são todos os 17 objetivos definidos pela ONU, que estão ilustrados na figura ao lado. Para mais detalhes visite o <cv-link href="https://brasil.un.org/pt-br/sdgs" target="_blank">site oficial da ONU no Brasil</cv-link> (ou clique na imagem).
+          A ferramenta solicita apenas informações básicas sobre o programa ou projeto de extensão: título e descrição, seleção de tópicos relacionados aos projetos e seleção de indicadores de extensão considerados relevantes. Nenhum dado pessoal é solicitado ou armazenado pela ferramenta. Após a entrada de informações, são apresentados gráficos e tabelas indicando os ODS relacionados e os indicadores do conjunto IBEU mais relevantes. É possível fazer o download em PDF do relatório.
         </p>
 
         <p>
-          Esta ferramenta foi desenvolvida como trabalho de conclusão de curso (TCC) para o curso de Ciência da Computação na UNIFESP. A metodologia utilizada para implementação desta ferramenta foi apresentada no trabalho de Mestrado Profissional de Inovação Tecnológica "Ferramenta para análise de projetos de Extensão Universitária sob a ótica da relação entre os Indicadores de Extensão e os ODS" <cv-link href="https://repositorio.unifesp.br/items/07c9b1d6-7de9-49fa-9d20-ae46eb8c8a7c">(BRAGA, 2023)</cv-link>. 
+          Esta ferramenta web foi desenvolvida como Trabalho de Conclusão de Curso (TCC) para o curso de Ciência da Computação do ICT-UNIFESP. A metodologia utilizada foi apresentada originalmente no trabalho de Mestrado Profissional em Inovação Tecnológica da mesma instituição: "Ferramenta para análise de projetos de Extensão Universitária sob a ótica da relação entre os Indicadores de Extensão e os ODS" <cv-link href="https://repositorio.unifesp.br/items/07c9b1d6-7de9-49fa-9d20-ae46eb8c8a7c" target="_blanl">(disponível neste link)</cv-link>.
         </p>
 
         <div class="cta-buttons">

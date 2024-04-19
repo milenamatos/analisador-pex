@@ -28,6 +28,8 @@
     <cv-content-switcher-content owner-id="relatorio">
       <section ref="pdf-content">
         <cv-grid fullWidth class="result">
+          <h1>Analisador de Projetos de Extensão</h1>
+
           <p class="left-align">
             A análise apresentada neste relatório foi realizada em {{ date }} às {{ time }}, através do site <cv-link :href="host" target="_blank">{{ host }}</cv-link>
           </p>
