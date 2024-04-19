@@ -2,14 +2,19 @@
   <div class="avaliar-projeto">
     <h3 class="align-center">Analise seu Projeto de Extensão de acordo com os indicadores de extensão e Objetivos de Desenvolvimento Sustentável!</h3>
 
-    <h4>Para realizar a análise você deve selecionar dentre uma lista de tópicos e indicadores quais se enquadram com o seu projeto de extensão. A ferramenta irá fazer o cálculo e identificar os ODS relacionados com o projeto. Um relatório será apresentado após a análise e você poderá exportá-lo para PDF.</h4>
-    
-    <p class="align-center">Preencha as informações no formulário abaixo para realizar sua análise. Seus dados não serão salvos nem
-      compartilhados.</p>
+    <p>Para realizar a análise você deve selecionar dentre uma lista de tópicos e indicadores quais se enquadram com o seu projeto de extensão. A ferramenta irá fazer o cálculo e identificar os ODS relacionados com o projeto. Um relatório será apresentado após a análise e você poderá exportá-lo para PDF.</p>
 
     <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="stepNames" />
 
     <div class="form-content">
+      <h5>Etapa {{ currentStepNumber+1 }}: {{ stepNames[currentStepNumber] }}</h5>
+
+      <p>{{ stepDescriptions[currentStepNumber] }}</p>
+
+      <p v-if="stepInstructions[currentStepNumber]">
+        <em>{{ stepInstructions[currentStepNumber] }}</em>
+      </p>
+
       <div 
         v-for="(step, stepIndex) in filledSteps" 
         v-show="stepIndex === currentStepNumber"
@@ -18,6 +23,7 @@
       >  
         <component 
           v-for="(field, index) in step" 
+          :class="{ 'bx--list-box--up': field.directionUp }"
           :is="field.name" 
           :key="index" 
           :value="formData[field.dataLabel]"
@@ -39,7 +45,7 @@
       </div>
 
       <p v-if="isFirstStep">* Campo obrigatório</p>
-      <p v-else-if="!isLastStep">OBS: Selecione pelo menos 1 item de alguma das categorias</p>
+      <!-- <p v-else-if="!isLastStep"></p> -->
 
       <div :class='["form-navigation", {
           "form-navigation-first-step": isFirstStep
@@ -90,6 +96,8 @@ export default {
       currentStepNumber: 0,
       filledSteps: [],
       stepNames: formSteps.stepNames,
+      stepDescriptions: formSteps.stepDescriptions,
+      stepInstructions: formSteps.stepInstructions,
       isLoading: false,
       showToast: false
     }
@@ -182,7 +190,7 @@ export default {
 .avaliar-projeto {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   margin-top: 16px;
   text-align: start;
   width: 90%;
@@ -195,7 +203,7 @@ export default {
 .stepper {
   flex-direction: column;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 16px;
 
   @media screen and (min-width: 1200px) {  
     flex-direction: row;
