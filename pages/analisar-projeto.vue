@@ -11,8 +11,8 @@
 
       <p>{{ stepDescriptions[currentStepNumber] }}</p>
 
-      <p v-if="stepInstructions[currentStepNumber]">
-        <em>{{ stepInstructions[currentStepNumber] }}</em>
+      <p v-if="currentStepNumber == 2">
+        Para mais detalhes sobre os indicadores visite <cv-link href='/ibeu' target='_blank'>esta página</cv-link> com a referência.
       </p>
 
       <div 
@@ -45,7 +45,10 @@
       </div>
 
       <p v-if="isFirstStep">* Campo obrigatório</p>
-      <!-- <p v-else-if="!isLastStep"></p> -->
+      
+      <p v-else-if="stepInstructions[currentStepNumber]">
+        <em>{{ stepInstructions[currentStepNumber] }}</em>
+      </p>
 
       <div :class='["form-navigation", {
           "form-navigation-first-step": isFirstStep
@@ -128,9 +131,11 @@ export default {
     }
   },
   async beforeMount() {
-    await this.getKeywords();
-    await this.getIndicators();  
-    await this.getGoals();
+    if (!this.keywords) {
+      await this.getKeywords();
+      await this.getIndicators();  
+      await this.getGoals();
+    }
 
     this.filledSteps = formSteps.steps.map(step => {
       return step.map(field => ({
