@@ -1,7 +1,7 @@
 <template>
   <cv-data-table 
     class="table"
-    title="Relacionamento dos tópicos e ODS"
+    title="Lista completa dos tópicos e ODS relacionados"
     helperText="A tabela abaixo apresenta a lista de tópicos (palavras-chave) sugeridos pela ONU e seus respectivos ODS"
     zebra
   >
