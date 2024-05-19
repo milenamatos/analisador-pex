@@ -112,17 +112,18 @@ import html2pdf from 'html2pdf.js'
 
 import FormReview from "~/components/form-review"
 
-import RelatedGoals from '~/components/tables/related-goals'
-import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
 import IndicatorsDistributionBSCChart from '~/components/charts/indicators-distribution-bsc'
 import IndicatorsDistributionTBLChart from '~/components/charts/indicators-distribution-tbl'
-import GoalsDistributionTable from '~/components/tables/goals-distribution'
 import GoalsDistributionChart from '~/components/charts/goals-distribution'
+
+import RelatedGoals from '~/components/tables/related-goals'
+import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
+import GoalsDistributionTable from '~/components/tables/goals-distribution'
 import PointsDistributionTable from '~/components/tables/points-distribution'
 import PointsDistributionPercentageTable from '~/components/tables/points-distribution-percentage'
-
 import GoalsTable from '~/components/tables/goals'
+import KeywordGoalsTable from '~/components/tables/keyword-goals'
 
 export default {
   name: 'ResultadoPage',
@@ -137,7 +138,8 @@ export default {
     GoalsDistributionChart,
     PointsDistributionTable,
     PointsDistributionPercentageTable,
-    GoalsTable
+    GoalsTable,
+    KeywordGoalsTable
   },
   data() {
     return {
@@ -147,18 +149,19 @@ export default {
       selectedIndex: 0,
       showReferenceTables: false,
       charts: [
-        'RelatedGoals',
         'IndicatorsDistributionChart',
-        'PointsDistributionTable',
-        'GoalsDistributionChart',
         'IndicatorsDistributionBSCChart',
-        'IndicatorsDistributionTBLChart'
+        'IndicatorsDistributionTBLChart',
+        'RelatedGoals',
+        'GoalsDistributionChart',
+        'PointsDistributionTable'
       ],
       tables: [
         'IndicatorsDistributionTable',
         'GoalsDistributionTable',
         'PointsDistributionPercentageTable',
-        'GoalsTable'
+        'GoalsTable',
+        'KeywordGoalsTable'
       ]
     }
   },
