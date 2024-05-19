@@ -131,7 +131,7 @@ export default {
     }
   },
   async beforeMount() {
-    if (!this.keywords) {
+    if (!this.goals.length) {
       await this.getKeywords();
       await this.getIndicators();  
       await this.getGoals();
