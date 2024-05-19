@@ -3,6 +3,7 @@
     class="table"
     title="Objetivos de Desenvolvimento Sustentável"
     helperText="A tabela abaixo apresenta a lista dos Objetivos de Desenvolvimento Sustentável"
+    zebra
   >
     <template v-slot:headings>
       <cv-data-table-heading heading="ID" name="" />
