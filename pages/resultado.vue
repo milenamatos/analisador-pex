@@ -112,6 +112,7 @@ import html2pdf from 'html2pdf.js'
 
 import FormReview from "~/components/form-review"
 
+import GoalsDistributionViaKeywordsChart from '~/components/charts/goals-distribution-via-keywords'
 import IndicatorsDistributionChart from '~/components/charts/indicators-distribution'
 import IndicatorsDistributionBSCChart from '~/components/charts/indicators-distribution-bsc'
 import IndicatorsDistributionTBLChart from '~/components/charts/indicators-distribution-tbl'
@@ -141,7 +142,8 @@ export default {
     PointsDistributionPercentageTable,
     GoalsTable,
     FullKeywordGoalsTable,
-    SelectedKeywordGoalsTable
+    SelectedKeywordGoalsTable,
+    GoalsDistributionViaKeywordsChart
   },
   data() {
     return {
@@ -152,6 +154,7 @@ export default {
       showReferenceTables: false,
       charts: [
         'SelectedKeywordGoalsTable',
+        'GoalsDistributionViaKeywordsChart',
         'IndicatorsDistributionChart',
         'IndicatorsDistributionBSCChart',
         'IndicatorsDistributionTBLChart',
