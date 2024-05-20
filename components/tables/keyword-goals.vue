@@ -1,57 +1,26 @@
 <template>
-  <cv-data-table 
-    class="table"
-    title="Lista completa dos tópicos e ODS relacionados"
-    helperText="A tabela abaixo apresenta a lista de tópicos (palavras-chave) sugeridos pela ONU e seus respectivos ODS"
-    zebra
-  >
-    <template v-slot:headings>
-      <cv-data-table-heading heading="Tópico (palavra-chave)" name="name" />
-      <cv-data-table-heading heading="ODS relacionados" name="ods" />
-    </template>
-
-    <template v-slot:data>
-      <cv-data-table-row 
-        v-for="(item, index) in keywords" 
-        :key="index" 
-        :value="index.toString()"
-      >
-        <cv-data-table-cell>
-          {{ item.name }}
-        </cv-data-table-cell>
-        
-        <cv-data-table-cell>
-          <cv-tooltip 
-            v-for="goal in item.goals" 
-            :key="goal.id"
-            :tip="goal.name"
-            direction="bottom"
-            class="tooltip"
-          >
-            <cv-tag :label="goal.id.toString()"></cv-tag>
-          </cv-tooltip>
-        </cv-data-table-cell>
-      </cv-data-table-row>
-    </template>
-  </cv-data-table>
+  <KeywordGoalsTemplate 
+    title="Tópicos selecionados e ODS relacionados"
+    helperText="A tabela abaixo apresenta a lista dos tópicos (palavras-chave) selecionados no formulário e seus respectivos ODS relacionados"
+    :keywordList="keywords"
+  />
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import KeywordGoalsTemplate from './keyword-goals-template'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'RelatedGoals',
+  name: 'KeywordGoals',
+  components: {
+    KeywordGoalsTemplate
+  },
   computed: {
-    ...mapState('keyword', ['keywords']),
-    relatedGoals() {
-      return this.analysisData.relatedGoals
+    ...mapGetters('formData', ['formattedData']),
+    ...mapGetters('keyword', ['keywordList']),
+    keywords() {
+      return this.formattedData.keywords.map(item => this.keywordList[item.id])
     }
   }
 }
 </script>
-
-<style>
-.bx--data-table-content {
-  overflow-x: unset !important;
-}
-</style>

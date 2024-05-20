@@ -117,13 +117,14 @@ import IndicatorsDistributionBSCChart from '~/components/charts/indicators-distr
 import IndicatorsDistributionTBLChart from '~/components/charts/indicators-distribution-tbl'
 import GoalsDistributionChart from '~/components/charts/goals-distribution'
 
+import SelectedKeywordGoalsTable from '~/components/tables/keyword-goals'
 import RelatedGoals from '~/components/tables/related-goals'
 import IndicatorsDistributionTable from '~/components/tables/indicators-distribution'
 import GoalsDistributionTable from '~/components/tables/goals-distribution'
 import PointsDistributionTable from '~/components/tables/points-distribution'
 import PointsDistributionPercentageTable from '~/components/tables/points-distribution-percentage'
 import GoalsTable from '~/components/tables/goals'
-import KeywordGoalsTable from '~/components/tables/keyword-goals'
+import FullKeywordGoalsTable from '~/components/tables/keyword-goals-full'
 
 export default {
   name: 'ResultadoPage',
@@ -139,7 +140,8 @@ export default {
     PointsDistributionTable,
     PointsDistributionPercentageTable,
     GoalsTable,
-    KeywordGoalsTable
+    FullKeywordGoalsTable,
+    SelectedKeywordGoalsTable
   },
   data() {
     return {
@@ -149,6 +151,7 @@ export default {
       selectedIndex: 0,
       showReferenceTables: false,
       charts: [
+        'SelectedKeywordGoalsTable',
         'IndicatorsDistributionChart',
         'IndicatorsDistributionBSCChart',
         'IndicatorsDistributionTBLChart',
@@ -161,7 +164,7 @@ export default {
         'GoalsDistributionTable',
         'PointsDistributionPercentageTable',
         'GoalsTable',
-        'KeywordGoalsTable'
+        'FullKeywordGoalsTable'
       ]
     }
   },
