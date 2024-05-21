@@ -15,7 +15,7 @@ import Chart from './chart'
 import { getGoalDistribution } from '~/assets/utils/analysis-data'
 
 export default {
-  name: 'IndicatorsDistribution',
+  name: 'GoalsDistribution',
   components: {
     Chart
   },
