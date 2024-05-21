@@ -7,9 +7,9 @@
     <cv-progress class="stepper" :initial-step="currentStepNumber" :steps="stepNames" />
 
     <div class="form-content">
-      <h5>Etapa {{ currentStepNumber+1 }}: {{ stepNames[currentStepNumber] }}</h5>
+      <h5>Etapa {{ currentStepNumber+1 }}: {{ currentStepConfig.name }}</h5>
 
-      <p>{{ stepDescriptions[currentStepNumber] }}</p>
+      <p>{{ currentStepConfig.description }}</p>
 
       <p v-if="currentStepNumber == 2">
         Para mais detalhes sobre os indicadores visite <cv-link href='/ibeu' target='_blank'>esta página</cv-link> com a referência.
@@ -46,8 +46,8 @@
 
       <p v-if="isFirstStep">* Campo obrigatório</p>
       
-      <p v-else-if="stepInstructions[currentStepNumber]">
-        <em>{{ stepInstructions[currentStepNumber] }}</em>
+      <p v-else-if="currentStepConfig.instruction">
+        <em>{{ currentStepConfig.instruction }}</em>
       </p>
 
       <div :class='["form-navigation", {
@@ -98,9 +98,7 @@ export default {
       playIcon: require('~/assets/icons/play.svg'),
       currentStepNumber: 0,
       filledSteps: [],
-      stepNames: formSteps.stepNames,
-      stepDescriptions: formSteps.stepDescriptions,
-      stepInstructions: formSteps.stepInstructions,
+      stepConfig: formSteps.stepConfig,
       isLoading: false,
       showToast: false
     }
@@ -110,6 +108,12 @@ export default {
     ...mapGetters('keyword', ['keywords']),
     ...mapGetters('indicator', ['indicators']),
     ...mapGetters('formData', ['formData']),
+    stepNames() {
+      return this.stepConfig.map(item => item.name)
+    },
+    currentStepConfig() {
+      return this.stepConfig[this.currentStepNumber]
+    },
     currentStep() {
       return this.filledSteps[this.currentStepNumber]
     },
@@ -170,12 +174,9 @@ export default {
         this.currentStepNumber--
       }, 100)
     },
-    async nextButton() {
+    nextButton() {
       if (this.isLastStep) {
-        this.isLoading = true
-        await this.fetchAnalysis()
-        
-        this.$router.push('/resultado')
+        this.startAnalysis()
       } else {
         if (this.validateForm()) {
           this.showToast = false
@@ -184,6 +185,10 @@ export default {
           this.showToast = true
         }
       }
+    },
+    startAnalysis() {
+      this.isLoading = true
+      this.fetchAnalysis().then(_ => this.$router.push('/resultado'))      
     }
   }
 }

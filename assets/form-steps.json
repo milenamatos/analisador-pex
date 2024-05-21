@@ -1,130 +1,158 @@
 {
-  "stepNames": [
-    "Informações básicas",
-    "Tópicos relacionados",
-    "Indicadores de extensão",
-    "Revisão dos dados"
-  ],
-  "stepDescriptions": [
-    "Nesta etapa são solicitadas informações de identificação do projeto a fim de incluir no relatório final.",
-    "Nesta etapa você deverá selecionar os tópicos que você julga estarem relacionados ao seu projeto. Estes tópicos são sugeridos pela ONU e serão relacionados apropriadamente pela ferramenta aos ODS.",
-    "Nesta etapa você deverá selecionar os indicadores do conjunto IBEU que você julga estarem relacionados ao seu projeto. Não são solicitados quantitativos, apenas se o projeto contribui de alguma forma com o indicador.",
-    "Nesta etapa você pode remover itens previamente selecionados clicando em “x” em cada item. Caso queira incluir novos itens, selecione “Voltar”."
-  ],
-  "stepInstructions": [
-    "Preencha as informações no formulário acima para realizar sua análise. Seus dados não serão salvos nem compartilhados.",
-    "Preencha as informações no formulário acima para realizar sua análise. Seus dados não serão salvos nem compartilhados. Utilize as pequenas setas para expandir ( v ) e encolher  ( ^ ) as listas. OBS: Selecione pelo menos 1 item de alguma das categorias",
-    "Preencha as informações no formulário acima para realizar sua análise. Seus dados não serão salvos nem compartilhados. Utilize as pequenas setas para expandir ( v ) e encolher  ( ^ )  as listas. OBS: Selecione pelo menos 1 item de alguma das categorias"
+  "stepConfig": [
+    {
+      "name": "Informações básicas",
+      "description": "Nesta etapa são solicitadas informações de identificação do projeto a fim de incluir no relatório final.",
+      "instruction": "Preencha as informações no formulário acima para realizar sua análise. Seus dados não serão salvos nem compartilhados."
+    },
+    {
+      "name": "Tópicos relacionados",
+      "description": "Nesta etapa você deverá selecionar os tópicos que você julga estarem relacionados ao seu projeto. Estes tópicos são sugeridos pela ONU e serão relacionados apropriadamente pela ferramenta aos ODS.",
+      "instruction": "Preencha as informações no formulário acima para realizar sua análise. Seus dados não serão salvos nem compartilhados. Utilize as pequenas setas para expandir ( v ) e encolher  ( ^ ) as listas. OBS: Selecione pelo menos 1 item de alguma das categorias"
+    },
+    {
+      "name": "Indicadores de extensão",
+      "description": "Nesta etapa você deverá selecionar os indicadores do conjunto IBEU que você julga estarem relacionados ao seu projeto. Não são solicitados quantitativos, apenas se o projeto contribui de alguma forma com o indicador.",
+      "instruction": "Preencha as informações no formulário acima para realizar sua análise. Seus dados não serão salvos nem compartilhados. Utilize as pequenas setas para expandir ( v ) e encolher  ( ^ ) as listas. OBS: Selecione pelo menos 1 item de alguma das categorias"
+    },
+    {
+      "name": "Revisão dos dados",
+      "description": "Nesta etapa você pode remover itens previamente selecionados clicando em “x” em cada item. Caso queira incluir novos itens, selecione “Voltar”."
+    }
   ],
   "stepNumber": {
     "keywords": 1,
     "indicators": 2
   },
   "steps": [
-  [{
-    "dataLabel": "name",
-    "name": "cv-text-input", 
-    "label": "Nome do projeto *",
-    "placeholder": "Projeto de exemplo",
-    "helperText": "Insira um nome que ajude a identificar o seu projeto"
-  }, {
-    "dataLabel": "description",
-    "name": "cv-text-area", 
-    "label": "Descrição do projeto",
-    "placeholder": "Este projeto tem como foco cumprir os objetivos de desenvolvimento sustentável...",
-    "helperText": "Insira uma breve descrição sobre o seu projeto",
-    "optional": true
-  }],
-  [{
-    "name": "cv-multi-select", 
-    "title": "Sociocultural",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "label": "Selecione os tópicos",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
-    "dataLabel": "sociocultural",
-    "model": "keywords"
-  }, {
-    "name": "cv-multi-select", 
-    "title": "Meio Ambiente",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "label": "Selecione os tópicos",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
-    "dataLabel": "meio-ambiente",
-    "model": "keywords"
-  },{
-    "name": "cv-multi-select", 
-    "title": "Econômico",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "label": "Selecione os tópicos",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
-    "dataLabel": "economico",
-    "model": "keywords",
-    "directionUp": true
-  }],
-  [{
-    "name": "cv-multi-select", 
-    "title": "Aluno, Sociedade e Financiadores Públicos",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "style": {"color": "green"},
-    "hexColor": "#008000",
-    "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
-    "dataLabel": "cliente",
-    "model": "indicators"
-  }, {
-    "name": "cv-multi-select", 
-    "title": "Processos Internos",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "style": {"color": "blue"},
-    "hexColor": "#0000ff",
-    "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
-    "dataLabel": "processos-internos",
-    "model": "indicators"
-  },{
-    "name": "cv-multi-select", 
-    "title": "Aprendizagem e Crescimento",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "style": {"color": "orange", "class": "tag--orange"},
-    "hexColor": "#ffa500",
-    "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
-    "dataLabel": "aprendizagem",
-    "model": "indicators"
-  },{
-    "name": "cv-multi-select", 
-    "title": "Recursos Financeiros e Infraestrutura",
-    "options": [],
-    "filterable": true,
-    "autoFilter": true,
-    "autoHighlight": true,
-    "style": {"color": "red"},
-    "hexColor": "#ff0000",
-    "label": "Selecione os indicadores",
-    "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
-    "dataLabel": "financeira",
-    "model": "indicators",
-    "directionUp": true
-  }],
-  [{
-    "name": "form-review"
-  }]
-]}
+    [
+      {
+        "dataLabel": "name",
+        "name": "cv-text-input",
+        "label": "Nome do projeto *",
+        "placeholder": "Projeto de exemplo",
+        "helperText": "Insira um nome que ajude a identificar o seu projeto"
+      },
+      {
+        "dataLabel": "description",
+        "name": "cv-text-area",
+        "label": "Descrição do projeto",
+        "placeholder": "Este projeto tem como foco cumprir os objetivos de desenvolvimento sustentável...",
+        "helperText": "Insira uma breve descrição sobre o seu projeto",
+        "optional": true
+      }
+    ],
+    [
+      {
+        "name": "cv-multi-select",
+        "title": "Sociocultural",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "label": "Selecione os tópicos",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
+        "dataLabel": "sociocultural",
+        "model": "keywords"
+      },
+      {
+        "name": "cv-multi-select",
+        "title": "Meio Ambiente",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "label": "Selecione os tópicos",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
+        "dataLabel": "meio-ambiente",
+        "model": "keywords"
+      },
+      {
+        "name": "cv-multi-select",
+        "title": "Econômico",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "label": "Selecione os tópicos",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos tópicos e selecione quantos achar necessário",
+        "dataLabel": "economico",
+        "model": "keywords",
+        "directionUp": true
+      }
+    ],
+    [
+      {
+        "name": "cv-multi-select",
+        "title": "Aluno, Sociedade e Financiadores Públicos",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "style": {
+          "color": "green"
+        },
+        "hexColor": "#008000",
+        "label": "Selecione os indicadores",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+        "dataLabel": "cliente",
+        "model": "indicators"
+      },
+      {
+        "name": "cv-multi-select",
+        "title": "Processos Internos",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "style": {
+          "color": "blue"
+        },
+        "hexColor": "#0000ff",
+        "label": "Selecione os indicadores",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+        "dataLabel": "processos-internos",
+        "model": "indicators"
+      },
+      {
+        "name": "cv-multi-select",
+        "title": "Aprendizagem e Crescimento",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "style": {
+          "color": "orange",
+          "class": "tag--orange"
+        },
+        "hexColor": "#ffa500",
+        "label": "Selecione os indicadores",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+        "dataLabel": "aprendizagem",
+        "model": "indicators"
+      },
+      {
+        "name": "cv-multi-select",
+        "title": "Recursos Financeiros e Infraestrutura",
+        "options": [],
+        "filterable": true,
+        "autoFilter": true,
+        "autoHighlight": true,
+        "style": {
+          "color": "red"
+        },
+        "hexColor": "#ff0000",
+        "label": "Selecione os indicadores",
+        "helperText": "Digite um termo para facilitar a buscar na lista dos indicadores e selecione quantos achar necessário",
+        "dataLabel": "financeira",
+        "model": "indicators",
+        "directionUp": true
+      }
+    ],
+    [
+      {
+        "name": "form-review"
+      }
+    ]
+  ]
+}
