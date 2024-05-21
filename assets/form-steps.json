@@ -17,7 +17,13 @@
     },
     {
       "name": "Revisão dos dados",
-      "description": "Nesta etapa você pode remover itens previamente selecionados clicando em “x” em cada item. Caso queira incluir novos itens, selecione “Voltar”."
+      "description": "Nesta etapa você pode remover itens previamente selecionados clicando em “x” em cada item. Caso queira incluir novos itens, selecione “Voltar”.",
+      "action": "preAnalysis"
+    },
+    {
+      "name": "Validação do resultado",
+      "description": "Nesta etapa é apresentado um resultado preliminar da análise, dessa forma é possível visualizar e remover itens da tabela conforme achar adequado.",
+      "action": "startAnalysis"
     }
   ],
   "stepNumber": {
@@ -152,6 +158,11 @@
     [
       {
         "name": "form-review"
+      }
+    ],
+    [
+      {
+        "name": "form-validation"
       }
     ]
   ]

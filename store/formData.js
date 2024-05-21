@@ -2,12 +2,13 @@ import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
   analysisData: {},
+  preAnalysisData: {},
   formData: {},
   formattedData: {
     indicators: [],
     goals: []
   },
-  requestedAnalysis: false,
+  requestedAnalysis: false
 })
 
 export const getters = {
@@ -37,6 +38,10 @@ export const mutations = {
 
   setAnalysisData(state, value) {
     state.analysisData = value
+  },
+
+  setPreAnalysisData(state, value) {
+    state.preAnalysisData = value
   }
 }
 
@@ -49,7 +54,11 @@ export const actions = {
     commit('setFormattedData', data)
   },
 
-  async fetchAnalysis({ commit, state, rootGetters }) {
+  setPreAnalysisData({ commit }, data) {
+    commit('setPreAnalysisData', data)
+  },
+
+  async fetchAnalysis({ commit, state }) {
     const keywordList = rootGetters['keyword/keywordList']
     const indicatorList = rootGetters['indicator/indicatorList']
 
@@ -67,5 +76,23 @@ export const actions = {
 
     commit('setRequestedAnalysis', true)
     commit('setAnalysisData', data)
+  },
+
+  async fetchPreAnalysis({ commit, state, rootGetters }) {
+    const keywordList = rootGetters['keyword/keywordList']
+    const indicatorList = rootGetters['indicator/indicatorList']
+
+    const goals = 
+      state.formattedData.keywords.reduce((result, keyword) => {
+        return result.concat(keywordList[keyword.id].goals)
+      }, [])
+      .map(goal => goal.id)
+
+    const uniqueGoals = [...new Set(goals)]
+    const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
+
+    const { data } = await apexApi.post("/pre-analysis", { goals: uniqueGoals, indicators })
+
+    commit('setPreAnalysisData', data)
   }
 }

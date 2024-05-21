@@ -85,12 +85,14 @@
 <script>
 import formSteps from '~/assets/form-steps.json'
 import FormReview from "~/components/form-review"
+import FormValidation from "~/components/form-validation"
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'AvaliarProjetoPage',
   components: {
     "form-review": FormReview,
+    "form-validation": FormValidation
   },
   data() {
     return {
@@ -156,7 +158,7 @@ export default {
     ...mapActions('goal', ['getGoals']),
     ...mapActions('keyword', ['getKeywords']),
     ...mapActions('indicator', ['getIndicators']),
-    ...mapActions('formData', ['setFormData', 'fetchAnalysis']),
+    ...mapActions('formData', ['setFormData', 'fetchAnalysis', 'fetchPreAnalysis']),
     mapOptions(optionsList) {
       return optionsList.map((item) => ({
         name: item.name,
@@ -175,8 +177,8 @@ export default {
       }, 100)
     },
     nextButton() {
-      if (this.isLastStep) {
-        this.startAnalysis()
+      if (this.currentStepConfig.action) {
+        this[this.currentStepConfig.action]()
       } else {
         if (this.validateForm()) {
           this.showToast = false
@@ -185,6 +187,13 @@ export default {
           this.showToast = true
         }
       }
+    },
+    preAnalysis() {
+      this.isLoading = true
+      this.fetchPreAnalysis().then(_ => {
+        this.isLoading = false
+        this.currentStepNumber++
+      })
     },
     startAnalysis() {
       this.isLoading = true
