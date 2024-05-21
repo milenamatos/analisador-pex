@@ -28,7 +28,11 @@
             direction="bottom"
             class="tooltip"
           >
-            <cv-tag :label="goalId.toString()"></cv-tag>
+            <cv-tag 
+              :label="goalId.toString()"
+              :filter="filter"
+              @remove="$emit('remove', { index, goalId, type: 'direct' })">
+            </cv-tag>
           </cv-tooltip>
         </cv-data-table-cell>
         
@@ -40,7 +44,11 @@
             direction="bottom"
             class="tooltip"
           >
-            <cv-tag :label="goalId.toString()"></cv-tag>
+            <cv-tag 
+              :label="goalId.toString()"
+              :filter="filter"
+              @remove="$emit('remove', { index, goalId, type: 'indirect' })">
+            </cv-tag>
           </cv-tooltip>
         </cv-data-table-cell>
       </cv-data-table-row>
@@ -49,17 +57,27 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import formSteps from '~/assets/form-steps.json'
 
 export default {
   name: 'RelatedGoals',
+  props: {
+    filter: {
+      type: Boolean,
+      default: false
+    },
+    relatedGoalsList: {
+      type: Array,
+      default: () => []
+    },
+  },
   computed: {
     ...mapGetters('indicator', ['indicatorList']),
     ...mapState('goal', ['goals']),
     ...mapState('formData', ['analysisData']),
     relatedGoals() {
-      return this.analysisData.relatedGoals
+      return this.relatedGoalsList || this.analysisData.relatedGoals
     }
   },
   methods: {
