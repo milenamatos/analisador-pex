@@ -18,17 +18,18 @@ export default {
     RelatedGoals
   },
   computed: {
-    ...mapState('formData', ['preAnalysisData'])
+    ...mapState('formData', ['preAnalysisData', 'removedItems'])
   },
   methods: {
-    ...mapActions('formData', ['setPreAnalysisData']),
-    removeItem({ index, goalId, type }) {
+    ...mapActions('formData', ['setPreAnalysisData', 'setRemovedItems']),
+    removeItem({ index, goalId, type, indicatorId }) {
       const indexToBeRemoved = this.preAnalysisData[index][type].indexOf(goalId)
       const list = this.preAnalysisData
       const updatedList = JSON.parse(JSON.stringify(list));
       updatedList[index][type].splice(indexToBeRemoved, 1)
       
       this.setPreAnalysisData(updatedList)
+      this.setRemovedItems([...this.removedItems, { goalId, type, indicatorId }])
     }
   }
 };

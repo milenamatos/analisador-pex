@@ -2,13 +2,14 @@ import apexApi from 'assets/services/apex-api'
 
 export const state = () => ({
   analysisData: {},
-  preAnalysisData: {},
+  preAnalysisData: [],
   formData: {},
   formattedData: {
     indicators: [],
     goals: []
   },
-  requestedAnalysis: false
+  requestedAnalysis: false,
+  removedItems: []
 })
 
 export const getters = {
@@ -42,6 +43,10 @@ export const mutations = {
 
   setPreAnalysisData(state, value) {
     state.preAnalysisData = value
+  },
+
+  setRemovedItems(state, value) {
+    state.removedItems = value
   }
 }
 
@@ -58,7 +63,11 @@ export const actions = {
     commit('setPreAnalysisData', data)
   },
 
-  async fetchAnalysis({ commit, state }) {
+  setRemovedItems({ commit }, data) {
+    commit('setRemovedItems', data)
+  },
+
+  async fetchAnalysis({ commit, state, rootGetters }) {
     const keywordList = rootGetters['keyword/keywordList']
     const indicatorList = rootGetters['indicator/indicatorList']
 
@@ -71,11 +80,11 @@ export const actions = {
     const uniqueGoals = [...new Set(goals)]
     const indicators = state.formattedData.indicators.map(item => indicatorList[item.id].id)
 
-    const body = { goals: uniqueGoals, indicators }
+    const body = { goals: uniqueGoals, indicators, removedItems: state.removedItems }
     const { data } = await apexApi.post("/analysis", body)
 
     commit('setRequestedAnalysis', true)
-    commit('setAnalysisData', data)
+    commit('setAnalysisData', {...data, relatedGoals: state.preAnalysisData})
   },
 
   async fetchPreAnalysis({ commit, state, rootGetters }) {
@@ -94,5 +103,6 @@ export const actions = {
     const { data } = await apexApi.post("/pre-analysis", { goals: uniqueGoals, indicators })
 
     commit('setPreAnalysisData', data)
+    commit('setRemovedItems', [])
   }
 }

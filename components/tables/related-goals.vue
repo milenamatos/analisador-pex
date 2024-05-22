@@ -31,7 +31,7 @@
             <cv-tag 
               :label="goalId.toString()"
               :filter="filter"
-              @remove="$emit('remove', { index, goalId, type: 'direct' })">
+              @remove="$emit('remove', { index, goalId, indicatorId: item.indicator_id, type: 'direct' })">
             </cv-tag>
           </cv-tooltip>
         </cv-data-table-cell>
@@ -47,7 +47,7 @@
             <cv-tag 
               :label="goalId.toString()"
               :filter="filter"
-              @remove="$emit('remove', { index, goalId, type: 'indirect' })">
+              @remove="$emit('remove', { index, goalId, indicatorId: item.indicator_id, type: 'indirect' })">
             </cv-tag>
           </cv-tooltip>
         </cv-data-table-cell>
@@ -77,7 +77,7 @@ export default {
     ...mapState('goal', ['goals']),
     ...mapState('formData', ['analysisData']),
     relatedGoals() {
-      return this.relatedGoalsList || this.analysisData.relatedGoals
+      return this.relatedGoalsList.length ? this.relatedGoalsList : this.analysisData.relatedGoals
     }
   },
   methods: {
