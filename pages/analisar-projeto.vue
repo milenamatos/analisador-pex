@@ -137,6 +137,8 @@ export default {
     }
   },
   async beforeMount() {
+    this.isLoading = true
+
     if (!this.goals.length) {
       await this.getKeywords();
       await this.getIndicators();  
@@ -153,6 +155,7 @@ export default {
       }))
     })
 
+    this.isLoading = false
   },
   methods: {
     ...mapActions('goal', ['getGoals']),
