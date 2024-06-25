@@ -22,7 +22,7 @@
     },
     {
       "name": "Validação do resultado",
-      "description": "Nesta etapa é apresentado um resultado preliminar da análise, dessa forma é possível visualizar e remover itens da tabela conforme achar adequado.",
+      "description": "Nesta etapa você deverá validar o resultado das relações entre IBEU e ODS. Verifique as relações e remova aquelas com as quais não concordar.",
       "action": "startAnalysis"
     }
   ],
