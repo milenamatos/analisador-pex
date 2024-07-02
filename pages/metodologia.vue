@@ -29,7 +29,7 @@
         para quadrantes que representam as seguintes perspectivas: <strong>Do Aluno, da Sociedade e dos Financiadores
           Públicos; Dos Processos Internos; Da Aprendizagem e Crescimento; Dos Recursos Financeiros e Infraestrutura
         </strong>. Adicionalmente, a autora da dissertação na qual esta ferramenta se baseia, distribuiu os ODS nos
-        pilares definidos pelo TRBL, são eles: <strong>Sociocultural, Meio Ambiente e Econômico.</strong>
+        pilares definidos pelo TBL, são eles: <strong>Sociocultural, Meio Ambiente e Econômico.</strong>
       </p>
 
       <p>
@@ -57,9 +57,9 @@
           <cv-list-item>
             Mapa estratégico dos IBEU relacionados ao projeto
             <cv-list nested>
+              <cv-list-item>Relação entre BSC e TBL</cv-list-item>
               <cv-list-item>Distribuição segundo o BSC</cv-list-item>
               <cv-list-item>Distribuição segundo o TBL</cv-list-item>
-              <cv-list-item>Relação entre BSC e TBL</cv-list-item>
             </cv-list>
           </cv-list-item>
         </cv-list>

@@ -31,7 +31,7 @@
           <h1>Analisador de Projetos de Extensão</h1>
 
           <p class="left-align">
-            A análise apresentada neste relatório foi realizada em {{ date }} às {{ time }}, através do site <cv-link :href="host" target="_blank">{{ host }}</cv-link>
+            A análise apresentada neste relatório foi realizada em {{ date }} às {{ time }}, através do site <cv-link href="\" target="_blank">{{ `https://${host}` }}</cv-link>
           </p>
 
           <cv-tile fullWidth class="details text-justify">
@@ -46,9 +46,9 @@
             <h4>Resumo da metodologia:</h4> 
 
             <p>
-              A metodologia utiliza métodos de gestão estratégica e sustentável estruturados pelo modelo <em>Balanced Scorecard</em> (BSC) aliado ao modelo <em>Triple Bottom Line (TBL)</em>. O mapa estratégico sobre a extensão universitária desenvolvido pelo <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">FORPROEX</cv-link> incorporou a metodologia empregada pelo modelo BSC utilizando os 52 indicadores de avaliação da Extensão Universitária e adaptando os quatro quadrantes tradicionais do modelo BSC para quadrantes que representam as seguintes perspectivas: <strong>Do Aluno, da Sociedade e dos Financiadores Públicos; Dos Processos Internos; Da Aprendizagem e Crescimento; Dos Recursos Financeiros e Infraestrutura </strong>. Adicionalmente, a autora da dissertação na qual esta ferramenta se baseia, distribuiu os ODS nos pilares definidos pelo TRBL, são eles: <strong>Sociocultural, Meio Ambiente e Econômico.</strong>
+              A metodologia utiliza métodos de gestão estratégica e sustentável estruturados pelo modelo <em>Balanced Scorecard</em> (BSC) aliado ao modelo <em>Triple Bottom Line (TBL)</em>. O mapa estratégico sobre a extensão universitária desenvolvido pelo <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">FORPROEX</cv-link> incorporou a metodologia empregada pelo modelo BSC utilizando os 52 indicadores de avaliação da Extensão Universitária e adaptando os quatro quadrantes tradicionais do modelo BSC para quadrantes que representam as seguintes perspectivas: <strong>Do Aluno, da Sociedade e dos Financiadores Públicos; Dos Processos Internos; Da Aprendizagem e Crescimento; Dos Recursos Financeiros e Infraestrutura </strong>. Adicionalmente, a autora da dissertação na qual esta ferramenta se baseia, distribuiu os ODS nos pilares definidos pelo TBL, são eles: <strong>Sociocultural, Meio Ambiente e Econômico.</strong>
             </p>
-            <p> Para mais detalhes sobre a metodologia utilizada, visite esta página: <cv-link :href="`${host}/metodologia`" target="_blank"> {{ `${host}/metodologia` }} </cv-link></p>
+            <p> Para mais detalhes sobre a metodologia utilizada, visite esta página: <cv-link href="/metodologia" target="_blank"> {{ `https://${host}/metodologia` }} </cv-link></p>
           </cv-tile>
 
           <cv-tile fullWidth class="left-align">
@@ -145,10 +145,10 @@ export default {
         'SelectedKeywordGoalsTable',
         'GoalsDistributionViaKeywordsChart',
         'IndicatorsDistributionChart',
-        'IndicatorsDistributionBSCChart',
-        'IndicatorsDistributionTBLChart',
         'RelatedGoals',
         'GoalsDistributionChart',
+        'IndicatorsDistributionBSCChart',
+        'IndicatorsDistributionTBLChart',
         'PointsDistributionTable'
       ],
       tables: [
