@@ -5,6 +5,10 @@
       Abaixo está a tabela contendo informações sobre todos os 52 indicadores conforme definidos pelo FORPROEX <cv-link href="https://docs.wixstatic.com/ugd/ff2fac_3bdef56a32ce47b18c83a6d911669596.pdf" target="_blank">neste relatório de pesquisa.</cv-link>
     </p>
 
+    <p>
+      Utilize a lupa localizada no lado direito, no topo da tabela, para realizar uma busca.
+    </p>
+
     <cv-data-table class="table" zebra @search="onFilter" searchLabel="Pesquisar" searchPlaceholder="Pesquisar pelo código ou nome">
       <template v-slot:headings>
         <cv-data-table-heading heading="Código e Nome " name="" />

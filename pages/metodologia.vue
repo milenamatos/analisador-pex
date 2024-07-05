@@ -50,6 +50,10 @@
         para o projeto analisado.
       </p>
 
+      <p>Exemplo de cruzamentos da Matriz de Referência:</p>
+
+      <img src="../assets/images/matriz.png">
+
       <p>
         As análises realizadas são as seguintes:
         <cv-list ordered>
